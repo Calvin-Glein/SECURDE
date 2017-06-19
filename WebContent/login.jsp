@@ -60,7 +60,7 @@ body {
 						</div>
 					</div>
 					<div class="ui fluid large basic submit button green"
-						onclick="location.href = '\createAccount.html';">Login</div>
+						onclick="location.href = '\accountdetails.jsp';">Login</div>
 				</div>
 
 				<div class="ui error message"></div>

@@ -31,25 +31,25 @@
 		<div class="ui grid">
 			<div class="three wide column">
 				<div class="ui small vertical steps">
-					<div class="completed step">
-						<i class="truck icon"></i>
-						<div class="content">
-							<div class="title">Shipping</div>
-							<div class="description">Choose your shipping options</div>
-						</div>
-					</div>
-					<div class="completed step">
-						<i class="credit card icon"></i>
-						<div class="content">
-							<div class="title">Billing</div>
-							<div class="description">Enter billing information</div>
-						</div>
-					</div>
 					<div class="active step">
-						<i class="info icon"></i>
+						<i class="user icon"></i>
 						<div class="content">
-							<div class="title">Confirm Order</div>
-							<div class="description">Verify order details</div>
+							<div class="title">Profile</div>
+							<div class="description">Account Information</div>
+						</div>
+					</div>
+					<div class="step">
+						<i class="small book icon"></i>
+						<div class="content">
+							<div class="title">Materials</div>
+							<div class="description">View your borrowed materials</div>
+						</div>
+					</div>
+					<div class="step">
+						<i class="university icon"></i>
+						<div class="content">
+							<div class="title">Room Reservations</div>
+							<div class="description">View your room reservations</div>
 						</div>
 					</div>
 				</div>

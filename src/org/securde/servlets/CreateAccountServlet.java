@@ -49,25 +49,45 @@ public class CreateAccountServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
+		System.out.println("email" + email);
 		String username = request.getParameter("username");
+		System.out.println("username" + username);
+
 		String password = request.getParameter("password");
+		System.out.println("password"  + password);
+
 		String firstname = request.getParameter("firstname");
+		System.out.println("first" + firstname);
+
 		String middlename = request.getParameter("middlename");
+		System.out.println("middle" + middlename);
+
 		String lastname = request.getParameter("lastname");
-		String idNumber = request.getParameter("idNumber");
+		System.out.println("lastname" + lastname);
+
+		String idNumber = request.getParameter("numberID");
+		System.out.println("id" + idNumber);
+
 		String birthdate = request.getParameter("birthdate");
+		System.out.println("birthdate" + birthdate);
+
 		String sQuestion = request.getParameter("sQuestion");
+		System.out.println("squest" +  sQuestion);
+
 		String sAnswer = request.getParameter("sAnswer");
+		System.out.println("sAns" + sAnswer);
+
 		int accountType = Integer.parseInt(request.getParameter("accountType"));
-		//int isActive = Integer.parseInt(request.getParameter("isActive"));
-		//int isChanged = Integer.parseInt(request.getParameter("isChanged"));
+		// int isActive = Integer.parseInt(request.getParameter("isActive"));
+		// int isChanged = Integer.parseInt(request.getParameter("isChanged"));
 		int isActive = 1;
 		int isChanged = 1;
 		String passwordExpireString = "30/1/2000";
 
 		Date passwordExpire = null;
 		try {
-			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(passwordExpireString).getTime());
+			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
+					new SimpleDateFormat("dd/MM/yyyy").parse(passwordExpireString).getTime());
 			passwordExpire = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
@@ -77,7 +97,7 @@ public class CreateAccountServlet extends HttpServlet {
 		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber, birthdate,
 				sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
 		AccountServices.CreateAccount(a);
-		response.sendRedirect("userAccountDetails.html");
+		response.sendRedirect("userAccountDetails.jsp");
 	}
 
 }

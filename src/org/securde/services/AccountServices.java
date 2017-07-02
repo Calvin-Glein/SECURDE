@@ -4,14 +4,52 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 import org.securde.beans.Account;
 import org.securde.db.DBPool;
 
-
 public class AccountServices {
 
-	/*public static void AddAccount(Account a) {
+	/*
+	 * public static void AddAccount(Account a) { String sql = "INSERT INTO " +
+	 * Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", " +
+	 * Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " +
+	 * Account.USER_FIRSTNAME + ", " + Account.USER_MIDDLENAME + ", " +
+	 * Account.USER_LASTNAME + ", " + Account.USER_IDNUMBER + ", " +
+	 * Account.USER_BIRTHDAY + ", " + Account.USER_SECRETQUESTION + ", " +
+	 * Account.USER_SECRETANSWER + ", " + Account.USER_ACCOUNTTYPE + ", " +
+	 * Account.USER_PASSWORDEXPIRE + ", " + Account.USER_ISCHANGED + ", " +
+	 * Account.USER_ISACTIVE +
+	 * ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	 * 
+	 * Connection conn = DBPool.getInstance().getConnection(); PreparedStatement
+	 * pstmt = null;
+	 * 
+	 * try { pstmt = conn.prepareStatement(sql);
+	 * 
+	 * pstmt.setString(1, a.getUsername()); pstmt.setString(2, a.getPassword());
+	 * pstmt.setString(3, a.getEmail()); pstmt.setString(4, a.getFirstname());
+	 * pstmt.setString(5, a.getMiddlename()); pstmt.setString(6,
+	 * a.getLastname()); pstmt.setString(7, a.getIdNumber()); pstmt.setString(8,
+	 * a.getBirthdate()); pstmt.setString(9, a.getsQuestion());
+	 * pstmt.setString(10, a.getsAnswer()); pstmt.setString(11,
+	 * a.getAccountType()); pstmt.setString(12, a.getPasswordExpire());
+	 * pstmt.setString(13, a.getIsChanged()); pstmt.setString(14,
+	 * a.getIsActive());
+	 * 
+	 * pstmt.executeUpdate();
+	 * 
+	 * } catch (SQLException e) { // TODO Auto-generated catch block
+	 * 
+	 * } finally { try { pstmt.close(); conn.close();
+	 * 
+	 * } catch (SQLException e) { // TODO Auto-generated catch block
+	 * 
+	 * }
+	 * 
+	 * } }
+	 */
+
+	public static void CreateAccount(Account a) {
 		String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
 				+ Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " + Account.USER_FIRSTNAME + ", "
 				+ Account.USER_MIDDLENAME + ", " + Account.USER_LASTNAME + ", " + Account.USER_IDNUMBER + ", "
@@ -22,67 +60,15 @@ public class AccountServices {
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
 
-		try {
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, a.getUsername());
-			pstmt.setString(2, a.getPassword());
-			pstmt.setString(3, a.getEmail());
-			pstmt.setString(4, a.getFirstname());
-			pstmt.setString(5, a.getMiddlename());
-			pstmt.setString(6, a.getLastname());
-			pstmt.setString(7, a.getIdNumber());
-			pstmt.setString(8, a.getBirthdate());
-			pstmt.setString(9, a.getsQuestion());
-			pstmt.setString(10, a.getsAnswer());
-			pstmt.setString(11, a.getAccountType());
-			pstmt.setString(12, a.getPasswordExpire());
-			pstmt.setString(13, a.getIsChanged());
-			pstmt.setString(14, a.getIsActive());
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-
-		} finally {
-			try {
-				pstmt.close();
-				conn.close();
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-
-			}
-
-		}
-	}*/
-
-	public static void CreateAccount(Account a) {
-		/*String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
-				+ Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " + Account.USER_FIRSTNAME + ", "
-				+ Account.USER_MIDDLENAME + ", " + Account.USER_LASTNAME + ", " + Account.USER_IDNUMBER + ", "
-				+ Account.USER_BIRTHDAY + ", " + Account.USER_SECRETQUESTION + ", " + Account.USER_SECRETANSWER + ", "
-				+ Account.USER_ACCOUNTTYPE + ", " + Account.USER_PASSWORDEXPIRE + ", " + Account.USER_ISCHANGED + ", "
-				+ Account.USER_ISACTIVE + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		*/
-		String sql = "Select * from shit;";
-
-		Connection conn = DBPool.getInstance().getConnection();
-		PreparedStatement pstmt = null;
-
-	/*	Data d;
-		String dateString = "30/1/2000"; //terminal
-		Date date1 = null;
-		try {
-			date1 = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
+		/*
+		 * Data d; String dateString = "30/1/2000"; //terminal Date date1 =
+		 * null; try { date1 = (Date) new
+		 * SimpleDateFormat("dd/MM/yyyy").parse(dateString); } catch
+		 * (ParseException e1) { // TODO Auto-generated catch block
+		 * e1.printStackTrace(); }
+		 */
 		System.out.println("0");
 
-		
 		try {
 			System.out.println("0.1");
 
@@ -91,7 +77,7 @@ public class AccountServices {
 			System.out.println("1");
 
 			pstmt.setString(1, a.getUsername());
-			
+
 			pstmt.setString(2, a.getPassword());
 			pstmt.setString(3, a.getEmail());
 			pstmt.setString(4, a.getFirstname());
@@ -106,11 +92,15 @@ public class AccountServices {
 			pstmt.setInt(13, a.getIsChanged());
 			pstmt.setInt(14, a.getIsActive());
 
+			System.out.println("done");
+
 			pstmt.executeUpdate();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("done");
 
+		} catch (SQLException e) {
+
+			e.printStackTrace();
 		} finally {
 			try {
 				pstmt.close();
@@ -120,8 +110,11 @@ public class AccountServices {
 				// TODO Auto-generated catch block
 
 			}
+			System.out.println("done");
 
 		}
+		System.out.println("done");
+
 	}
 
 	/*

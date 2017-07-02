@@ -17,7 +17,7 @@ public class Account implements Serializable {
 	public static final String USER_MIDDLENAME = "middleName";
 	public static final String USER_LASTNAME = "lastName";
 	public static final String USER_IDNUMBER = "idNumber";
-	public static final String USER_BIRTHDAY = "birthDate";
+	public static final String USER_BIRTHDAY = "birthDay";
 	public static final String USER_SECRETQUESTION = "sQuestion";
 	public static final String USER_SECRETANSWER = "sAnswer";
 	public static final String USER_ACCOUNTTYPE = "accountType";

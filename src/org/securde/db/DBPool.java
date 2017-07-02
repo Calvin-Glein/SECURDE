@@ -3,14 +3,15 @@ package org.securde.db;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
+
 
 public class DBPool {
 
 	public static String schema = "libsysdb";
 	public static String username = "root";
 	public static String password = "1234";
-	public static String url = "jdbc:mysql://localhost:3307/";
+	public static String url = "jdbc:mysql://localhost:3306/";
 	public static String driver = "com.mysql.jdbc.Driver";
 	// an instance of itself
 

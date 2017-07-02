@@ -31,59 +31,60 @@
 
 			<form class="ui form" method="post" action="CreateAccountServlet">
 				<div class="field">
-					<label>Username</label> <input type="text" name="username"
+					<label>Username</label> <input type="text" id="username" name="username"
 						placeholder="Your nickname in this website">
 				</div>
 				<div class="ui form">
 					<label>Name</label>
 					<div class="inline fields">
 						<div class="six wide field">
-							<input type="text" placeholder="First Name" id="firstname">
+							<input type="text" placeholder="First Name" id="firstname"
+								name="firstname">
 						</div>
 						<div class="five wide field">
-							<input type="text" placeholder="Middle Name" id="middlename">
+							<input type="text" placeholder="Middle Name" id="middlename" name="middlename">
 						</div>
 						<div class="five wide field">
-							<input type="text" placeholder="Last Name" id="lastname">
+							<input type="text" placeholder="Last Name" id="lastname" name="lastname">
 						</div>
 					</div>
 				</div>
 				<div class="field">
-					<label>Email</label> <input type="text" id="email"
+					<label>Email</label> <input type="text" id="email" name="email"
 						placeholder="username@domain.com">
 				</div>
 
 				<div class="field">
-					<label>Password</label> <input type="text" id="password"
+					<label>Password</label> <input type="text" id="password" name="password"
 						placeholder="Must be alphanumeric">
 				</div>
 				<div class="field">
-					<label>Re-type Password</label> <input type="text" id="retype"
+					<label>Re-type Password</label> <input type="text" name="retype"
 						placeholder="Re-type password">
 				</div>
 				<div class="field">
 					<label>Student Number/Employee Number</label> <input type="text"
-						id="idNumber" name="number" placeholder="Refer to your ID">
+						id="numberID" name="numberID" placeholder="Refer to your ID">
 				</div>
 				<div class="field">
-					<label>Birthday</label> <input type="text" id="birthdate"
-						placeholder="Refer to your ID">
+					<label>Birthday</label> <input type="text" name="birthdate"
+						placeholder="Birth" id="birthdate">
 				</div>
 				<div class="ui form">
 					<label>Secret Question</label>
 					<div class="inline fields">
 						<div class="ten wide field">
-							<input type="text" placeholder="Question" id="sQuestion">
+							<input type="text" placeholder="Question" name="sQuestion" id="sQuestion">
 						</div>
 						<div class="six wide field">
-							<input type="text" placeholder="Answer" id="sAnswer">
+							<input type="text" placeholder="Answer" name="sAnswer" id="sAnswer">
 						</div>
 
 					</div>
 				</div>
 				<div class="field">
-					<label>Type</label> <select
-						class="ui search dropdown fluid" name = "accountType">
+					<label>Type</label> <select class="ui search dropdown fluid"
+						name="accountType">
 						<option value="">You are a</option>
 						<option value="1">Student</option>
 						<option value="2">Library Staff</option>

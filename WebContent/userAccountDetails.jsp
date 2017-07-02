@@ -17,13 +17,9 @@
 </head>
 <body>
 	<div id="nav-placeholder"></div>
-
-
 	<div class="ui container">
 		<br> <br> <br> <br>
-
 		<h1 class="ui header headerc">Profile</h1>
-
 		<div class="ui fitted divider"></div>
 
 		<br>
@@ -31,21 +27,24 @@
 		<div class="ui grid">
 			<div class="three wide column">
 				<div class="ui small vertical steps">
-					<div class="active step">
+					<div class="step active"
+						onclick="location.href = 'userAccountDetails.jsp'">
 						<i class="user icon"></i>
 						<div class="content">
 							<div class="title">Profile</div>
 							<div class="description">Account Information</div>
 						</div>
 					</div>
-					<div class="step">
+					<div class="step"
+						onclick="location.href = 'userMaterialsBorrowed.jsp'">
 						<i class="small book icon"></i>
 						<div class="content">
 							<div class="title">Materials</div>
 							<div class="description">View your borrowed materials</div>
 						</div>
 					</div>
-					<div class="step">
+					<div class="step"
+						onclick="location.href = 'userAccountDetails.jsp'">
 						<i class="university icon"></i>
 						<div class="content">
 							<div class="title">Room Reservations</div>
@@ -160,8 +159,10 @@
 							<div class="ui segment">
 								<h3 class="ui header left aligned">
 									<div class="content">
-										Birthday
+										Password
 										<div class="sub header">*********</div>
+										<div class="sub header">change</div>
+
 									</div>
 								</h3>
 							</div>

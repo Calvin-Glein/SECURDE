@@ -91,6 +91,11 @@
 				</div>
 				<button class="ui button basic green fluid" type="submit">Register
 					Account</button>
+				<br>
+				<div class="item">
+					<a href="userAccountDetails.jsp" class="ui green button">[Debug] Go to
+						profile</a>
+				</div>
 			</form>
 		</div>
 		<br> <br> <br> <br> <br> <br> <br>

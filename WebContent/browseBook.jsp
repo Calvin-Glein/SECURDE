@@ -245,6 +245,11 @@
 		</div>
 
 
+		<div class="item">
+			<a href="viewMaterial.jsp" class="ui green button">[Debug]
+				Go to material details</a>
+		</div>
+
 		<script>
 			$('.card').hover(function() {
 				$(this).transition('bounce');

@@ -58,7 +58,7 @@
 
 
 		<div class="ui container">
-			<h1 class="ui horizontal divider header">Browse Magazines</h1>
+			<h1 class="ui horizontal divider header">Browse Magazine</h1>
 			<br>
 			<div class="ui container">
 				<table id="example" class="ui definition selectable padded table"

@@ -19,7 +19,7 @@
 	<div id="nav-placeholder"></div>
 	<div class="ui container">
 		<br> <br> <br> <br>
-		<h1 class="ui header headerc">Profile</h1>
+		<h1 class="ui header headerc">Books</h1>
 		<div class="ui fitted divider"></div>
 
 		<br>

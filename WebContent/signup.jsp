@@ -29,8 +29,7 @@
 
 		<div class="ui segment">
 
-
-			<form class="ui form">
+			<form class="ui form" method="post" action="CreateAccountServlet">
 				<div class="field">
 					<label>Username</label> <input type="text" name="username"
 						placeholder="Your nickname in this website">
@@ -39,46 +38,45 @@
 					<label>Name</label>
 					<div class="inline fields">
 						<div class="six wide field">
-
-							<input type="text" placeholder="First Name">
+							<input type="text" placeholder="First Name" id = "firstname">
 						</div>
 						<div class="five wide field">
-							<input type="text" placeholder="Middle Name">
+							<input type="text" placeholder="Middle Name" id = "middlename">
 						</div>
 						<div class="five wide field">
-							<input type="text" placeholder="Last Name">
+							<input type="text" placeholder="Last Name" id = "lastname">
 						</div>
 					</div>
 				</div>
 				<div class="field">
-					<label>Email</label> <input type="text" name="email"
+					<label>Email</label> <input type="text" id = "email"
 						placeholder="username@domain.com">
 				</div>
 
 				<div class="field">
-					<label>Password</label> <input type="text" name="password"
+					<label>Password</label> <input type="text" id = "password"
 						placeholder="Must be alphanumeric">
 				</div>
 				<div class="field">
-					<label>Re-type Password</label> <input type="text" name="re-type"
+					<label>Re-type Password</label> <input type="text" id="retype"
 						placeholder="Re-type password">
 				</div>
 				<div class="field">
-					<label>Student Number/Employee Number</label> <input type="text"
+					<label>Student Number/Employee Number</label> <input type= "text" id = "idNumber"
 						name="number" placeholder="Refer to your ID">
 				</div>
 				<div class="field">
-					<label>Birthday</label> <input type="text" name="number"
+					<label>Birthday</label> <input type="text" id = "birthdate"
 						placeholder="Refer to your ID">
 				</div>
 				<div class="ui form">
 					<label>Secret Question</label>
 					<div class="inline fields">
 						<div class="ten wide field">
-							<input type="text" placeholder="Question">
+							<input type="text" placeholder="Question" id = "sQuestion">
 						</div>
 						<div class="six wide field">
-							<input type="text" placeholder="Answer">
+							<input type="text" placeholder="Answer" id = "sAnswer">
 						</div>
 
 					</div>

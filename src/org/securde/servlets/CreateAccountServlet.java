@@ -1,15 +1,16 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hpe.beans.User;
-import org.hpe.services.UserServices;
-import org.hpe.servlets.String;
+
+import org.securde.beans.Account;
+import org.securde.services.AccountServices;
 
 /**
  * Servlet implementation class CreateAccountServlet
@@ -43,14 +44,24 @@ public class CreateAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int user_id = -1;
 		String email = request.getParameter("email");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstname");
+		String middlename = request.getParameter("middlename");
+		String lastname = request.getParameter("lastname");
+		String idNumber = request.getParameter("idNumber");
+		String birthdate = request.getParameter("birthdate");
+		String sQuestion = request.getParameter("sQuestion");
+		String sAnswer = request.getParameter("sAnswer");
+		String accountType = request.getParameter("accountType");
+		String isActive = request.getParameter("isActive");
+		String isChanged = request.getParameter("isChanged");
+		String passwordExpire = request.getParameter("passwordExpire");
 
-		User u = new User(username, password, email);
-
-		UserServices.addUser(u);
+		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber,
+				birthdate, sQuestion, sAnswer, accountType);
+		AccountServices.addUser(a);
 		response.sendRedirect("login.html");
 	}
 

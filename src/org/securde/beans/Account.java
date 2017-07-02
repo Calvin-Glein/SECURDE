@@ -1,6 +1,7 @@
 package org.securde.beans;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Account implements Serializable {
 	/**
@@ -35,25 +36,25 @@ public class Account implements Serializable {
 	private String birthdate;
 	private String sQuestion;
 	private String sAnswer;
-	private String accountType;
-	private String passwordExpire;
-	private String isChanged;
-	private String isActive;
+	private int accountType;
+	private Date passwordExpire;
+	private int isChanged;
+	private int isActive;
 
 	public Account() {
 
 	}
 
-	public String getIsActive() {
+	public int getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
 
 	public Account(String username, String password, String email, String firstname, String middlename, String lastname,
-			String idNumber, String birthdate, String sQuestion, String sAnswer, String accountType, String isChanged, String passwordExpire, String isActive) {
+			String idNumber, String birthdate, String sQuestion, String sAnswer, int accountType, int isChanged, Date passwordExpire, int isActive) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -159,27 +160,27 @@ public class Account implements Serializable {
 		this.sAnswer = sAnswer;
 	}
 
-	public String getAccountType() {
+	public int getAccountType() {
 		return accountType;
 	}
 
-	public void setAccountType(String accountType) {
+	public void setAccountType(int accountType) {
 		this.accountType = accountType;
 	}
 
-	public String getPasswordExpire() {
+	public Date getPasswordExpire() {
 		return passwordExpire;
 	}
 
-	public void setPasswordExpire(String passwordExpire) {
+	public void setPasswordExpire(Date passwordExpire) {
 		this.passwordExpire = passwordExpire;
 	}
 
-	public String getIsChanged() {
+	public int getIsChanged() {
 		return isChanged;
 	}
 
-	public void setIsChanged(String isChanged) {
+	public void setIsChanged(int isChanged) {
 		this.isChanged = isChanged;
 	}
 

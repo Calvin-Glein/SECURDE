@@ -38,23 +38,23 @@
 					<label>Name</label>
 					<div class="inline fields">
 						<div class="six wide field">
-							<input type="text" placeholder="First Name" id = "firstname">
+							<input type="text" placeholder="First Name" id="firstname">
 						</div>
 						<div class="five wide field">
-							<input type="text" placeholder="Middle Name" id = "middlename">
+							<input type="text" placeholder="Middle Name" id="middlename">
 						</div>
 						<div class="five wide field">
-							<input type="text" placeholder="Last Name" id = "lastname">
+							<input type="text" placeholder="Last Name" id="lastname">
 						</div>
 					</div>
 				</div>
 				<div class="field">
-					<label>Email</label> <input type="text" id = "email"
+					<label>Email</label> <input type="text" id="email"
 						placeholder="username@domain.com">
 				</div>
 
 				<div class="field">
-					<label>Password</label> <input type="text" id = "password"
+					<label>Password</label> <input type="text" id="password"
 						placeholder="Must be alphanumeric">
 				</div>
 				<div class="field">
@@ -62,24 +62,34 @@
 						placeholder="Re-type password">
 				</div>
 				<div class="field">
-					<label>Student Number/Employee Number</label> <input type= "text" id = "idNumber"
-						name="number" placeholder="Refer to your ID">
+					<label>Student Number/Employee Number</label> <input type="text"
+						id="idNumber" name="number" placeholder="Refer to your ID">
 				</div>
 				<div class="field">
-					<label>Birthday</label> <input type="text" id = "birthdate"
+					<label>Birthday</label> <input type="text" id="birthdate"
 						placeholder="Refer to your ID">
 				</div>
 				<div class="ui form">
 					<label>Secret Question</label>
 					<div class="inline fields">
 						<div class="ten wide field">
-							<input type="text" placeholder="Question" id = "sQuestion">
+							<input type="text" placeholder="Question" id="sQuestion">
 						</div>
 						<div class="six wide field">
-							<input type="text" placeholder="Answer" id = "sAnswer">
+							<input type="text" placeholder="Answer" id="sAnswer">
 						</div>
 
 					</div>
+				</div>
+				<div class="field">
+					<label>Type</label> <select
+						class="ui search dropdown fluid" name = "accountType">
+						<option value="">You are a</option>
+						<option value="1">Student</option>
+						<option value="2">Library Staff</option>
+						<option value="3">Library Manager</option>
+						<option value="4">Administrator</option>
+					</select>
 				</div>
 				<div class="field">
 					<div class="ui checkbox">
@@ -87,13 +97,17 @@
 							agree to the Terms and Conditions</label>
 					</div>
 				</div>
+
 				<button class="ui button basic green fluid" type="submit">Register
 					Account</button>
+
 				<br>
 				<div class="item">
-					<a href="userAccountDetails.jsp" class="ui green button">[Debug] Go to
-						profile</a>
+					<a href="userAccountDetails.jsp" class="ui green button">[Debug]
+						Go to profile</a>
 				</div>
+
+
 			</form>
 		</div>
 		<br> <br> <br> <br> <br> <br> <br>

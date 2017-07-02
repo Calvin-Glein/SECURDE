@@ -1,6 +1,9 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.securde.beans.Account;
 import org.securde.services.AccountServices;
+
+import com.mysql.fabric.xmlrpc.base.Data;
 
 /**
  * Servlet implementation class CreateAccountServlet
@@ -54,15 +58,26 @@ public class CreateAccountServlet extends HttpServlet {
 		String birthdate = request.getParameter("birthdate");
 		String sQuestion = request.getParameter("sQuestion");
 		String sAnswer = request.getParameter("sAnswer");
-		String accountType = request.getParameter("accountType");
-		String isActive = request.getParameter("isActive");
-		String isChanged = request.getParameter("isChanged");
-		String passwordExpire = request.getParameter("passwordExpire");
+		int accountType = Integer.parseInt(request.getParameter("accountType"));
+		//int isActive = Integer.parseInt(request.getParameter("isActive"));
+		//int isChanged = Integer.parseInt(request.getParameter("isChanged"));
+		int isActive = 1;
+		int isChanged = 1;
+		String passwordExpireString = "30/1/2000";
 
-		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber,
-				birthdate, sQuestion, sAnswer, accountType);
-		AccountServices.addUser(a);
-		response.sendRedirect("login.html");
+		Date passwordExpire = null;
+		try {
+			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(new SimpleDateFormat("dd/MM/yyyy").parse(passwordExpireString).getTime());
+			passwordExpire = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber, birthdate,
+				sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
+		AccountServices.CreateAccount(a);
+		response.sendRedirect("userAccountDetails.html");
 	}
 
 }

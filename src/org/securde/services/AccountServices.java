@@ -1,20 +1,17 @@
 package org.securde.services;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import org.securde.beans.Account;
 import org.securde.db.DBPool;
 
-import com.mysql.fabric.xmlrpc.base.Data;
 
 public class AccountServices {
 
-	public static void AddAccount(Account a) {
+	/*public static void AddAccount(Account a) {
 		String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
 				+ Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " + Account.USER_FIRSTNAME + ", "
 				+ Account.USER_MIDDLENAME + ", " + Account.USER_LASTNAME + ", " + Account.USER_IDNUMBER + ", "
@@ -59,37 +56,42 @@ public class AccountServices {
 			}
 
 		}
-	}
+	}*/
 
 	public static void CreateAccount(Account a) {
-		String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
+		/*String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
 				+ Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " + Account.USER_FIRSTNAME + ", "
 				+ Account.USER_MIDDLENAME + ", " + Account.USER_LASTNAME + ", " + Account.USER_IDNUMBER + ", "
 				+ Account.USER_BIRTHDAY + ", " + Account.USER_SECRETQUESTION + ", " + Account.USER_SECRETANSWER + ", "
 				+ Account.USER_ACCOUNTTYPE + ", " + Account.USER_PASSWORDEXPIRE + ", " + Account.USER_ISCHANGED + ", "
 				+ Account.USER_ISACTIVE + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		*/
+		String sql = "Select * from shit;";
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
 
-		Data d;
-		Date date = null;
-
+	/*	Data d;
+		String dateString = "30/1/2000"; //terminal
+		Date date1 = null;
 		try {
+			date1 = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
+		System.out.println("0");
 
-			java.util.Date dateJava = new java.util.Date();
-
-			d = new Data();
-			String date = "January 2, 2010";
-			date = new java.sql.Date(date);
-
-		} catch (Exception e) {
-		}
-
+		
 		try {
+			System.out.println("0.1");
+
 			pstmt = conn.prepareStatement(sql);
 
+			System.out.println("1");
+
 			pstmt.setString(1, a.getUsername());
+			
 			pstmt.setString(2, a.getPassword());
 			pstmt.setString(3, a.getEmail());
 			pstmt.setString(4, a.getFirstname());
@@ -99,10 +101,10 @@ public class AccountServices {
 			pstmt.setString(8, a.getBirthdate());
 			pstmt.setString(9, a.getsQuestion());
 			pstmt.setString(10, a.getsAnswer());
-			pstmt.setString(11, a.getAccountType());
-			pstmt.setDate(12, date);
-			pstmt.setString(13, a.getIsChanged());
-			pstmt.setString(14, a.getIsActive());
+			pstmt.setInt(11, a.getAccountType());
+			pstmt.setDate(12, a.getPasswordExpire());
+			pstmt.setInt(13, a.getIsChanged());
+			pstmt.setInt(14, a.getIsActive());
 
 			pstmt.executeUpdate();
 

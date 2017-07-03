@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.securde.beans.Account;
+import org.securde.beans.Material;
 import org.securde.db.DBPool;
 
 public class AccountServices {
@@ -51,8 +52,10 @@ public class AccountServices {
 	 * } }
 	 */
 
-	public static void Login(Account a) {
-		String sql = "Select " + Account.USER_USER_ID + " from account where "
+	public static Account Login(Account a) {
+		
+		Account b = new Account();
+		String sql = "Select " + Account.USER_USER_ID + " , " + Account.USER_USERNAME + " from account where "
 				+ Account.USER_USERNAME + " = ? && " + Account.USER_PASSWORD + " = ?;";
 
 		Connection conn = DBPool.getInstance().getConnection();
@@ -68,7 +71,8 @@ public class AccountServices {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println(rs.getString(Account.USER_USER_ID));
+				b.setAccountid(Integer.parseInt(rs.getString(Account.USER_USER_ID)));
+				b.setUsername(rs.getString(Account.USER_USERNAME)); 
 			}
 			System.out.println("done");
 
@@ -89,6 +93,7 @@ public class AccountServices {
 		}
 		System.out.println("done");
 
+		return b;
 	}
 
 	public static void CreateAccount(Account a) {
@@ -157,6 +162,61 @@ public class AccountServices {
 		}
 		System.out.println("done");
 
+	}
+	
+	
+	
+	public static Account getAccountData(int accountID) {
+		Account account = new Account();
+
+		String sql = "Select * from account" + " where accountid = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, accountID);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {				
+				account.setAccountType(rs.getInt(Account.USER_ACCOUNTTYPE));
+				account.setAccountid(rs.getInt(Account.USER_USER_ID));
+				account.setBirthdate(rs.getString(Account.USER_BIRTHDAY));
+				account.setEmail(rs.getString(Account.USER_EMAIL));
+				account.setFirstname(rs.getString(Account.USER_FIRSTNAME));
+				account.setIdNumber(rs.getString(Account.USER_USER_ID));
+				account.setIsActive(rs.getInt(Account.USER_ISACTIVE));
+				account.setIsChanged(rs.getInt(Account.USER_ISCHANGED));
+				account.setLastname(rs.getString(Account.USER_LASTNAME));
+				account.setMiddlename(rs.getString(Account.USER_MIDDLENAME));
+				account.setPassword(rs.getString(Account.USER_PASSWORD));
+				account.setsAnswer(rs.getString(Account.USER_SECRETANSWER));
+				account.setsQuestion(rs.getString(Account.USER_SECRETQUESTION));
+				account.setUsername(rs.getString(Account.USER_USERNAME));
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+
+
+		return account;
 	}
 
 	/*

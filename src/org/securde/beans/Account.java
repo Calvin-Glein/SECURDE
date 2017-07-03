@@ -29,7 +29,7 @@ public class Account implements Serializable {
 	private String username;
 	private String password;
 	private String email;
-	private String accountid;
+	private int accountid;
 	private String firstname;
 	private String middlename;
 	private String lastname;
@@ -104,11 +104,11 @@ public class Account implements Serializable {
 		this.email = email;
 	}
 
-	public String getAccountid() {
+	public int getAccountid() {
 		return accountid;
 	}
 
-	public void setAccountid(String accountid) {
+	public void setAccountid(int accountid) {
 		this.accountid = accountid;
 	}
 

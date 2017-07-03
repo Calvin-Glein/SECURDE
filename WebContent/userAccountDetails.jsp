@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +74,7 @@
 								</div>
 								<div class="content">
 									Username
-									<div class="sub header">Pogi</div>
+									<div class="sub header"><c:out value="${account.username}" /></div>
 								</div>
 							</div>
 						</div>
@@ -82,7 +85,7 @@
 										<h3 class="ui header left aligned">
 											<div class="content">
 												Firstname
-												<div class="sub header">Glenn</div>
+												<div class="sub header"><c:out value="${account.firstname}" /></div>
 											</div>
 										</h3>
 									</div>
@@ -92,7 +95,7 @@
 										<h3 class="ui header left aligned">
 											<div class="content">
 												Middlename
-												<div class="sub header">Montes</div>
+												<div class="sub header"><c:out value="${account.middlename}" /></div>
 											</div>
 										</h3>
 									</div>
@@ -102,7 +105,7 @@
 										<h3 class="ui header left aligned">
 											<div class="content">
 												Lastname
-												<div class="sub header">Matias</div>
+												<div class="sub header"><c:out value="${account.lastname}" /></div>
 											</div>
 										</h3>
 									</div>
@@ -113,7 +116,7 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Email
-										<div class="sub header">glenn_matias@dlsu.edu.ph</div>
+										<div class="sub header"><c:out value="${account.email}" /></div>
 									</div>
 								</h3>
 							</div>
@@ -121,7 +124,7 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Student/Employee Number
-										<div class="sub header">11312345</div>
+										<div class="sub header"><c:out value="${account.idNumber}" /></div>
 									</div>
 								</h3>
 							</div>
@@ -129,7 +132,7 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Birthday
-										<div class="sub header">(02) XXX-XXXX</div>
+										<div class="sub header"><c:out value="${account.birthdate}" /></div>
 									</div>
 								</h3>
 							</div>
@@ -139,8 +142,7 @@
 										<h3 class="ui header left aligned">
 											<div class="content">
 												Secret Question
-												<div class="sub header">What is the name of my first
-													pet?</div>
+												<div class="sub header"><c:out value="${account.sQuestion}" /></div>
 											</div>
 										</h3>
 									</div>
@@ -150,7 +152,7 @@
 										<h3 class="ui header left aligned">
 											<div class="content">
 												Answer
-												<div class="sub header">Somerandomdogname</div>
+												<div class="sub header"><c:out value="${account.sAnswer}" /></div>
 											</div>
 										</h3>
 									</div>
@@ -160,7 +162,7 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Password
-										<div class="sub header">*********</div>
+										<div class="sub header"><c:out value="${account.password}" /></div>
 										<div class="sub header">change</div>
 
 									</div>

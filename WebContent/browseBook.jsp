@@ -40,6 +40,20 @@
 }
 </style>
 
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			//get id of the clicked delete button
+			var material_id = $(this).attr("id");
+
+			//set value of hiddne inpiut to the id
+			$("#hiddeninput").val(material_id);
+
+			//submit form automatically
+			$("form").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="container" style="background-color: white;">
@@ -76,6 +90,7 @@
 							<th>Tags</th>
 							<th>Status</th>
 							<th>Rating</th>
+							<th>View</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -88,14 +103,20 @@
 								<td>${c.year}</td>
 								<td>${c.tags}</td>
 								<td>${c.status}</td>
-								<td>"See page"</td>
-								<%-- <td>${c.rating}</td> --%>
+								<td>${c.rating}</td>
+								<td><button class="btn btn-primary" id="${c.materialID}">View</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
+
+
+
+		<form action="ViewBookServlet" method="POST">
+			<input id="hiddeninput" name="material_id" type="hidden">
+		</form>
 
 
 		<div class="item">

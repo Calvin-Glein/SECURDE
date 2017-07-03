@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +54,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Title
-										<div class="sub header">10F Henry Sy Learning Commons</div>
+										<div class="sub header">
+											<c:out value="${material.title}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -59,7 +64,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Author
-										<div class="sub header">10F Henry Sy Learning Commons</div>
+										<div class="sub header">
+											<c:out value="${material.author}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -67,7 +74,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Year
-										<div class="sub header">10F Henry Sy Learning Commons</div>
+										<div class="sub header">
+											<c:out value="${material.year}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -75,7 +84,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Location
-										<div class="sub header">10F Henry Sy Learning Commons</div>
+										<div class="sub header">
+											<c:out value="${material.location}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -83,7 +94,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Publisher
-										<div class="sub header">11312345</div>
+										<div class="sub header">
+											<c:out value="${material.publisher}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -91,7 +104,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Status
-										<div class="sub header">(02) XXX-XXXX</div>
+										<div class="sub header">
+											<c:out value="${material.status}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -99,8 +114,7 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Rating
-										<div class="sub header">*********</div>
-										<div class="sub header">change</div>
+										<div class="sub header"><c:out value="${material.rating}" /></div>
 									</div>
 								</h3>
 							</div>
@@ -164,8 +178,7 @@
 											<div class="metadata">
 												<span class="date">5 days ago</span>
 											</div>
-											<div class="text">Dude, this is awesome. Thanks so much
-											</div>
+											<div class="text">Dude, this is awesome. Thanks so much</div>
 											<div class="actions">
 												<a class="reply">Reply</a>
 											</div>

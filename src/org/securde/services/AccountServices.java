@@ -64,10 +64,8 @@ public class AccountServices {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, a.getUsername());
 			pstmt.setString(2, a.getPassword());
-			
-			
+				
 			rs = pstmt.executeQuery();
-
 
 			while (rs.next()) {
 				System.out.println(rs.getString(Account.USER_USER_ID));

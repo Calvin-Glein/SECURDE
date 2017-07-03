@@ -28,6 +28,7 @@ public class Material implements Serializable {
 	private Date dateReserve;
 	private Date dateReturn;
 	private String title;
+	private int rating;
 	
 	
 	public Material(){
@@ -50,6 +51,14 @@ public class Material implements Serializable {
 		this.title = title;
 	}
 
+	public void setRating(int rating ){
+		this.rating = rating;
+	}
+	
+	public int getRating(){
+		return rating;
+		
+	}
 	public int getMaterialID() {
 		return materialID;
 	}

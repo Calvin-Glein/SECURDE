@@ -1,7 +1,9 @@
 package org.securde.services;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.securde.beans.Account;
@@ -48,6 +50,48 @@ public class AccountServices {
 	 * 
 	 * } }
 	 */
+
+	public static void Login(Account a) {
+		String sql = "Select " + Account.USER_USER_ID + " from account where "
+				+ Account.USER_USERNAME + " = ? && " + Account.USER_PASSWORD + " = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a.getUsername());
+			pstmt.setString(2, a.getPassword());
+			
+			
+			rs = pstmt.executeQuery();
+
+
+			while (rs.next()) {
+				System.out.println(rs.getString(Account.USER_USER_ID));
+			}
+			System.out.println("done");
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+			System.out.println("done");
+
+		}
+		System.out.println("done");
+
+	}
 
 	public static void CreateAccount(Account a) {
 		String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "

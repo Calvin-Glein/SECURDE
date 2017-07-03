@@ -1,6 +1,7 @@
 package org.securde.beans;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 
 public class Account implements Serializable {
@@ -45,6 +46,13 @@ public class Account implements Serializable {
 
 	}
 
+	
+
+	public Account(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
 	public int getIsActive() {
 		return isActive;
 	}

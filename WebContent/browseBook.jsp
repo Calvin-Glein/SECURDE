@@ -1,9 +1,10 @@
-
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
@@ -78,167 +79,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-
+						<c:forEach var="c" items="${books}">
+							<tr>
+								<td>${c.title}</td>
+								<td>${c.location}</td>
+								<td>${c.author}</td>
+								<td>${c.publisher}</td>
+								<td>${c.year}</td>
+								<td>${c.tags}</td>
+								<td>${c.status}</td>
+								<td>"See page"</td>
+								<%-- <td>${c.rating}</td> --%>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -246,8 +99,8 @@
 
 
 		<div class="item">
-			<a href="viewMaterial.jsp" class="ui green button">[Debug]
-				Go to material details</a>
+			<a href="viewMaterial.jsp" class="ui green button">[Debug] Go to
+				material details</a>
 		</div>
 
 		<script>

@@ -45,7 +45,7 @@ body {
 				<img src="images/experience.png">
 			</div>
 			<br> <br>
-			<form class="ui large form">
+			<form class="ui large form" method="post" action="LoginServlet">
 				<div class="ui stacked segment">
 					<div class="field">
 						<div class="ui left icon input">
@@ -59,8 +59,7 @@ body {
 								placeholder="Password">
 						</div>
 					</div>
-					<div class="ui fluid large basic submit button green"
-						onclick="location.href = '\accountdetails.jsp';">Login</div>
+					<button class="ui fluid large basic submit button green" type = "submit">Login</button>
 				</div>
 
 				<div class="ui error message"></div>

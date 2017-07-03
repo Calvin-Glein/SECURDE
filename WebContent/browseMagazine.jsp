@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
@@ -38,6 +40,20 @@
 }
 </style>
 
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			//get id of the clicked delete button
+			var material_id = $(this).attr("id");
+
+			//set value of hiddne inpiut to the id
+			$("#hiddeninput").val(material_id);
+
+			//submit form automatically
+			$("form").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="container" style="background-color: white;">
@@ -58,7 +74,7 @@
 
 
 		<div class="ui container">
-			<h1 class="ui horizontal divider header">Browse Magazine</h1>
+			<h1 class="ui horizontal divider header">Browse Books</h1>
 			<br>
 			<div class="ui container">
 				<table id="example" class="ui definition selectable padded table"
@@ -74,176 +90,34 @@
 							<th>Tags</th>
 							<th>Status</th>
 							<th>Rating</th>
+							<th>View</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-						<tr>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-							<td>None</td>
-						</tr>
-
+						<c:forEach var="c" items="${magazines}">
+							<tr>
+								<td>${c.title}</td>
+								<td>${c.location}</td>
+								<td>${c.author}</td>
+								<td>${c.publisher}</td>
+								<td>${c.year}</td>
+								<td>${c.tags}</td>
+								<td>${c.status}</td>
+								<td>${c.rating}</td>
+								<td><button class="btn btn-primary" id="${c.materialID}">View</button></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
 
+
+		<form action="ViewBookServlet" method="POST">
+			<input id="hiddeninput" name="material_id" type="hidden">
+		</form>
+		
 		<script>
 			$('.card').hover(function() {
 				$(this).transition('bounce');

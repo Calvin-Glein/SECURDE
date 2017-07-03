@@ -41,8 +41,63 @@ public class MaterialServices {
 				book.setTags(rs.getString(Material.MATERIAL_TAGS));
 				book.setYear(rs.getString(Material.MATERIAL_YEAR));
 				book.setTitle(rs.getString(Material.MATERIAL_TITLE));
-				books.add(book);
+
 				book.setRating(getAverageRating(book.getMaterialID()));
+
+				books.add(book);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return books;
+	}
+
+	public static ArrayList<Material> getMagazines() {
+
+		ArrayList<Material> magazines = new ArrayList<Material>();
+
+		Material magazine = new Material();
+
+		String sql = "Select * from readingMaterial" + " where materialType = 'magazine';";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				magazine.setAuthor(rs.getString(Material.MATERIAL_AUTHOR));
+				magazine.setDateReserve(rs.getDate(Material.MATERIAL_DATERESERVE));
+				magazine.setDateReturn(rs.getDate(Material.MATERIAL_DATERETURN));
+				magazine.setLocation(rs.getString(Material.MATERIAL_DEWEYLOCATION));
+				magazine.setMaterialID(rs.getInt(Material.MATERIAL_MATERIALID));
+				magazine.setMaterialType(rs.getString(Material.MATERIAL_MATERIALTYPE));
+				magazine.setPublisher(rs.getString(Material.MATERIAL_PUBLISHER));
+				magazine.setStatus(rs.getInt(Material.MATERIAL_STATUS));
+				magazine.setTags(rs.getString(Material.MATERIAL_TAGS));
+				magazine.setYear(rs.getString(Material.MATERIAL_YEAR));
+				magazine.setTitle(rs.getString(Material.MATERIAL_TITLE));
+				magazine.setRating(getAverageRating(magazine.getMaterialID()));
+				magazines.add(magazine);
+
+				System.out.println(magazine.getTitle() + "asdadas");
 
 			}
 		} catch (SQLException e) {
@@ -60,10 +115,65 @@ public class MaterialServices {
 
 		}
 
-		return books;
+		return magazines;
+	}
+	
+	
+	public static ArrayList<Material> getTheses() {
+
+		ArrayList<Material> theses = new ArrayList<Material>();
+
+		Material thesis = new Material();
+
+		String sql = "Select * from readingMaterial" + " where materialType = 'thesis';";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				thesis.setAuthor(rs.getString(Material.MATERIAL_AUTHOR));
+				thesis.setDateReserve(rs.getDate(Material.MATERIAL_DATERESERVE));
+				thesis.setDateReturn(rs.getDate(Material.MATERIAL_DATERETURN));
+				thesis.setLocation(rs.getString(Material.MATERIAL_DEWEYLOCATION));
+				thesis.setMaterialID(rs.getInt(Material.MATERIAL_MATERIALID));
+				thesis.setMaterialType(rs.getString(Material.MATERIAL_MATERIALTYPE));
+				thesis.setPublisher(rs.getString(Material.MATERIAL_PUBLISHER));
+				thesis.setStatus(rs.getInt(Material.MATERIAL_STATUS));
+				thesis.setTags(rs.getString(Material.MATERIAL_TAGS));
+				thesis.setYear(rs.getString(Material.MATERIAL_YEAR));
+				thesis.setTitle(rs.getString(Material.MATERIAL_TITLE));
+				thesis.setRating(getAverageRating(thesis.getMaterialID()));
+				theses.add(thesis);
+
+				System.out.println(thesis.getTitle() + "asdadas");
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+
+		return theses;
 	}
 
-	public static Material getBookData(int material_id) {
+	public static Material getMaterialData(int material_id) {
 		Material book = new Material();
 
 		String sql = "Select * from readingMaterial" + " where materialId = ?;";
@@ -115,7 +225,7 @@ public class MaterialServices {
 
 	public static int getAverageRating(int material_id) {
 		int averageRating = 0;
-		String sql = "Select avg(rating) from ratings where materialId = ?";
+		String sql = "Select avg(rating) from rating where materialId = ?";
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;

@@ -30,7 +30,7 @@
 						<%=session.getAttribute("Username")%>
 						&nbsp;
 
-						<div class="ui dropdown">
+						<div class="ui dropdown" id ="dropdownAccount">
 							<div class="text">
 								<img class="ui avatar image" src="images/avatar.jpg">
 							</div>
@@ -63,5 +63,5 @@
 </div>
 
 <script>
-	$('.ui.dropdown').dropdown();
+	$('#dropdownAccount').dropdown();
 </script>

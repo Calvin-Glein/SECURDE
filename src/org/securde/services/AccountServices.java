@@ -2,7 +2,6 @@ package org.securde.services;
 
 import java.sql.Connection;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,12 +53,12 @@ public class AccountServices {
 	 */
 
 	public static Account Login(Account a) {
-		
+
 		Account b = new Account();
-		
+
 		b.setAccountid(-1);
-		String sql = "Select " + Account.USER_USER_ID + " , " + Account.USER_USERNAME + " from account where "
-				+ Account.USER_USERNAME + " = ? && " + Account.USER_PASSWORD + " = ?;";
+		String sql = "Select " + Account.USER_USER_ID + " , " + Account.USER_USERNAME + ", " + Account.USER_ACCOUNTTYPE
+				+ " from account where " + Account.USER_USERNAME + " = ? && " + Account.USER_PASSWORD + " = ?;";
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
@@ -70,12 +69,13 @@ public class AccountServices {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, a.getUsername());
 			pstmt.setString(2, a.getPassword());
-				
+
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				b.setAccountid(Integer.parseInt(rs.getString(Account.USER_USER_ID)));
-				b.setUsername(rs.getString(Account.USER_USERNAME)); 
+				b.setUsername(rs.getString(Account.USER_USERNAME));
+				b.setAccountType(rs.getInt(Account.USER_ACCOUNTTYPE));
 			}
 			System.out.println("done");
 
@@ -166,9 +166,7 @@ public class AccountServices {
 		System.out.println("done");
 
 	}
-	
-	
-	
+
 	public static Account getAccountData(int accountID) {
 		Account account = new Account();
 
@@ -185,7 +183,7 @@ public class AccountServices {
 
 			rs = pstmt.executeQuery();
 
-			while (rs.next()) {				
+			while (rs.next()) {
 				account.setAccountType(rs.getInt(Account.USER_ACCOUNTTYPE));
 				account.setAccountid(rs.getInt(Account.USER_USER_ID));
 				account.setBirthdate(rs.getString(Account.USER_BIRTHDAY));
@@ -200,8 +198,7 @@ public class AccountServices {
 				account.setsAnswer(rs.getString(Account.USER_SECRETANSWER));
 				account.setsQuestion(rs.getString(Account.USER_SECRETQUESTION));
 				account.setUsername(rs.getString(Account.USER_USERNAME));
-				
-				
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -217,7 +214,6 @@ public class AccountServices {
 			}
 
 		}
-
 
 		return account;
 	}

@@ -26,30 +26,7 @@
 
 		<div class="ui grid">
 			<div class="three wide column">
-				<div class="ui small vertical steps">
-					<div class="step" onclick="location.href = 'userAccountDetails.jsp'">
-						<i class="user icon"></i>
-						<div class="content">
-							<div class="title">Profile</div>
-							<div class="description">Account Information</div>
-						</div>
-					</div>
-					<div class="step"
-						onclick="location.href = 'userMaterialsBorrowed.jsp'">
-						<i class="small book icon"></i>
-						<div class="content">
-							<div class="title">Materials</div>
-							<div class="description">View your borrowed materials</div>
-						</div>
-					</div>
-					<div class="step active">
-						<i class="university icon"></i>
-						<div class="content">
-							<div class="title" >Room Reservations</div>
-							<div class="description">View your room reservations</div>
-						</div>
-					</div>
-				</div>
+				<jsp:include page="sidebar.jsp" />
 			</div>
 
 			<div class="thirteen wide column">

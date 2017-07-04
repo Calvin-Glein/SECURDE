@@ -16,6 +16,7 @@ public class Material implements Serializable {
 	public static final String MATERIAL_DATERESERVE = "dateReserve";
 	public static final String MATERIAL_DATERETURN = "dateReturn";
 	public static final String MATERIAL_TITLE = "title";
+	public static final String MATERIAL_TABLENAME = "readingmaterial";
 
 	private int materialID;
 	private String materialType;

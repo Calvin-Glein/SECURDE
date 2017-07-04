@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.securde.beans.Material;
 import org.securde.services.MaterialServices;
 
 /**
- * Servlet implementation class ReturnMaterialServlet
+ * Servlet implementation class StaffReturnMaterialServlet
  */
-@WebServlet("/ReturnMaterialServlet")
-public class ReturnMaterialServlet extends HttpServlet {
+@WebServlet("/StaffReturnMaterialServlet")
+public class StaffReturnMaterialServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ReturnMaterialServlet() {
+	public StaffReturnMaterialServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -43,14 +44,16 @@ public class ReturnMaterialServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		MaterialServices.returnMaterial(Integer.parseInt(request.getParameter("material_id")));
 		MaterialServices.returnBorrow(Integer.parseInt(request.getParameter("material_id")),
-				Integer.parseInt((request.getSession(false).getAttribute("accountID").toString())));
+				MaterialServices.returnCurrentBorrowerAccountID(Integer.parseInt(request.getParameter("material_id"))));
 
-		RequestDispatcher rd = request.getRequestDispatcher("ViewBorrowedServlet");
+		int materialID = Integer.parseInt(request.getParameter("material_id"));
 
-		rd.forward(request, response);
+		Material m = MaterialServices.getMaterialData(materialID);
+
+		request.setAttribute("material", m);
+		request.getRequestDispatcher("ViewAllMaterialsServlet").forward(request, response);
 	}
 
 }

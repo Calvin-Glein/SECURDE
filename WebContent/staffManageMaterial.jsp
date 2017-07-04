@@ -13,10 +13,26 @@
 	href="css/semantic/semantic.min.css">
 <script src="css/semantic/semantic.min.js"></script>
 
+
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			//get id of the clicked delete button
+			var material_id = $(this).attr("id");
+
+			//set value of hiddne inpiut to the id
+			$("#hiddeninput").val(material_id);
+
+			//submit form automatically
+			$("form").submit();
+		});
+	});
+</script>
 <title>Profile</title>
 
 <style>
 </style>
+
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -62,7 +78,8 @@
 									<td>${c.status}</td>
 									<td>${c.rating}</td>
 									<td><button class="ui button basic green"
-											id="${c.materialID}">View</button></td>
+											id="${c.materialID}">Manage</button></td>
+
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -80,6 +97,9 @@
 
 
 
+	<form action="ManageBookServlet" method="POST">
+		<input id="hiddeninput" name="material_id" type="hidden">
+	</form>
 
 </body>
 

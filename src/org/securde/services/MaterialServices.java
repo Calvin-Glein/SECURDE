@@ -582,4 +582,44 @@ public class MaterialServices {
 		}
 	}
 
+	public static int returnCurrentBorrowerAccountID(int materialID) {
+		
+		
+		int accountID = -1;
+		String sql = "select * from borrow where materialID = ? && returned = 0";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, materialID);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				accountID = rs.getInt("accountID");
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		
+		return accountID;
+	}
+
 }

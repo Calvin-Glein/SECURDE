@@ -9,7 +9,7 @@
 			<a href="home.jsp" class="item">Home</a> <a href="GetBooksServlet"
 				class="item">Books</a> <a href="GetMagazinesServlet" class="item">Magazines</a>
 			<a href="GetThesesServlet" class="item">Theses</a> <a
-				href="GetThesesServlet" class="item">Rooms</a>
+				href="GetRoomServlet" class="item">Rooms</a>
 
 
 			<div class="right menu" style="margin: 10px;">

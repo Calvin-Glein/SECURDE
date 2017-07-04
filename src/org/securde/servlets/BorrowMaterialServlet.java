@@ -1,6 +1,8 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,16 +44,18 @@ public class BorrowMaterialServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String from = request.getParameter("from");
-		String to = request.getParameter("to");
+		String from = request.getParameter("fromString").toString();
+		String to = request.getParameter("toString").toString();
 
-		System.out.println("Frommmmm: " + from);
-		System.out.println("tooooo: " + to);
 		int materialID = Integer.parseInt(request.getParameter("materialID"));
 		System.out.println(request.getSession(false).getAttribute("accountID"));
 		int accountID = Integer.parseInt((request.getSession(false).getAttribute("accountID").toString()));
 		MaterialServices.borrowBook(accountID, materialID, from, to);
-
+		MaterialServices.borrowMaterialAccountTable(materialID, from, to);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("GetBooksServlet");
+		
+		rd.forward(request,response);
 	}
 
 }

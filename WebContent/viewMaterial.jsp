@@ -69,65 +69,65 @@
 									</div>
  -->
 
-									<form class="ui form" method="post"
-										action="BorrowMaterialServlet">
-										<div class="ui action input fluid">
-											<input type="text" name="daterange" id="dateRangePicker"
-												value="01/01/2015 - 01/31/2015" />
-											<div id="borrow" class="ui green right button">Set</div>
-										</div>
-										<script type="text/javascript">
-											$(function() {
-												$('input[name="daterange"]')
-														.daterangepicker();
-											});
-										</script>
-										<br> <br>
-										<h3 class="ui header">Verify Details</h3>
-										<div class="ui fitted divider"></div>
-										<br>
+									<c:if test="${material.status == 1}">
 
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">From:</div>
-												<input type="text" id="fromInput" name="from" />
+										<form class="ui form" method="post"
+											action="BorrowMaterialServlet">
+											<div class="ui action input fluid">
+												<input type="text" name="daterange" id="dateRangePicker"
+													value="01/01/2015 - 01/31/2015" />
+												<div id="borrow" class="ui green right button">Set</div>
 											</div>
-										</div>
-										<br>
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">To:</div>
-												<input type="text" id="toInput" name="to" />
+											<script type="text/javascript">
+												$(function() {
+													$('input[name="daterange"]')
+															.daterangepicker();
+												});
+											</script>
+											<br> <br>
+											<h3 class="ui header">Verify Details</h3>
+											<div class="ui fitted divider"></div>
+											<br>
+
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">From:</div>
+													<input type="text" id="fromString" name="fromString" />
+												</div>
 											</div>
-										</div>
-										<br>
+											<br>
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">To:</div>
+													<input type="text" id="toString" name="toString" />
+												</div>
+											</div>
+											<br>
 
-										<button class="ui button green fluid" type="submit">
-											<i class="book icon"></i> Borrow
-										</button>
+
+											<button class="ui button green fluid" type="submit">
+												<i class="book icon"></i> Borrow
+											</button>
 
 
-										<input type="text" name="materialID"
-											value="${material.materialID}" />
-									</form>
+											<input type="text" name="materialID"
+												value="${material.materialID}" />
+										</form>
 
+									</c:if>
 									<script>
-										document.getElementById("fromInput").disabled = true;
-										document.getElementById("toInput").disabled = true;
-
 										$("#borrow")
 												.click(
 														function() {
-
 															document
-																	.getElementById("fromInput").value = $(
+																	.getElementById("fromString").value = $(
 																	"#dateRangePicker")
 																	.data(
 																			'daterangepicker').startDate
 																	.format('DD/MM/YYYY');
 															;
 															document
-																	.getElementById("toInput").value = $(
+																	.getElementById("toString").value = $(
 																	"#dateRangePicker")
 																	.data(
 																			'daterangepicker').endDate

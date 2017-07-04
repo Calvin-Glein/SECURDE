@@ -3,6 +3,7 @@ package org.securde.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,11 +35,7 @@ public class GetBooksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<Material> books = MaterialServices.getBooks();
-		// give clothes.jso the date to display
-		request.setAttribute("books", books);
-		request.getRequestDispatcher("browseBook.jsp").forward(request, response);
-
+		doPost(request, response);
 	}
 
 	/**
@@ -46,4 +43,13 @@ public class GetBooksServlet extends HttpServlet {
 	 *      response)
 	 */
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		ArrayList<Material> books = MaterialServices.getBooks();
+		// give clothes.jso the date to display
+		request.setAttribute("books", books);
+		request.getRequestDispatcher("browseBook.jsp").forward(request, response);
+	}
 }

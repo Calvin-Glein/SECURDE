@@ -280,17 +280,8 @@ public class MaterialServices {
 		System.out.println("From: " + from);
 		System.out.println("to: " + to);
 
-		Date fromDate = null;
-		try {
-			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
-					new SimpleDateFormat("dd/MM/yyyy").parse(from).getTime());
-			fromDate = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		Date toDate = null;
+		Date fromDate = dateToSQLDate(from);
+		Date toDate = dateToSQLDate(to);
 		try {
 			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
 					new SimpleDateFormat("dd/MM/yyyy").parse(from).getTime());
@@ -327,5 +318,57 @@ public class MaterialServices {
 
 		}
 
+	}
+
+	public static Date dateToSQLDate(String date) {
+		Date finalDate = null;
+		try {
+			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
+					new SimpleDateFormat("dd/MM/yyyy").parse(date).getTime());
+			finalDate = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return finalDate;
+
+	}
+
+	public static void borrowMaterialAccountTable(int materialID, String from, String to) {
+		String sql = "Update readingmaterial SET status = 0, dateReserve = ?, dateReturn = ? WHERE materialId = ?;";
+
+		Date fromDate = dateToSQLDate(from);
+
+		Date toDate = dateToSQLDate(to);
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, fromDate);
+
+			pstmt.setDate(2, toDate);
+			pstmt.setInt(3, materialID);
+
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
 	}
 }

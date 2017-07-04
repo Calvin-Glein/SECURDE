@@ -16,7 +16,7 @@
 
 				<c:if test="${sessionScope.Username == null}">
 					<div class="item">
-						<a href="login.jsp" class="ui inverted green button"> Login </a>
+						<a href="login.jsp" class="ui inverted green button"> Log In </a>
 					</div>
 					<div class="item">
 						<a href="signup.jsp" class="ui green button">Sign Up</a>

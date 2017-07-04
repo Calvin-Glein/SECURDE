@@ -69,40 +69,71 @@
 									</div>
  -->
 
+									<form class="ui form" method="post"
+										action="BorrowMaterialServlet">
+										<div class="ui action input fluid">
+											<input type="text" name="daterange" id="dateRangePicker"
+												value="01/01/2015 - 01/31/2015" />
+											<div id="borrow" class="ui green right button">Set</div>
+										</div>
+										<script type="text/javascript">
+											$(function() {
+												$('input[name="daterange"]')
+														.daterangepicker();
+											});
+										</script>
+										<br> <br>
+										<h3 class="ui header">Verify Details</h3>
+										<div class="ui fitted divider"></div>
+										<br>
 
-									<div class="ui action input fluid">
-										<input type="text" name="daterange" id="dateRangePicker"
-											value="01/01/2015 - 01/31/2015" />
-										<button id="borrow" class="ui green right labeled icon button">
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">From:</div>
+												<input type="text" id="fromInput" name="from" />
+											</div>
+										</div>
+										<br>
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">To:</div>
+												<input type="text" id="toInput" name="to" />
+											</div>
+										</div>
+										<br>
+
+										<button class="ui button green fluid" type="submit">
 											<i class="book icon"></i> Borrow
 										</button>
-									</div>
 
-									<script type="text/javascript">
-										$(function() {
-											$('input[name="daterange"]')
-													.daterangepicker();
-										});
-									</script>
 
-									<br>
-								<!-- 	<div id="borrow" class="ui fluid large submit button green">Borrow
-									</div> -->
-
-									<p id="date">name</p>
+										<input type="text" name="materialID"
+											value="${material.materialID}" />
+									</form>
 
 									<script>
+										document.getElementById("fromInput").disabled = true;
+										document.getElementById("toInput").disabled = true;
+
 										$("#borrow")
 												.click(
 														function() {
-															var myName = $(
+
+															document
+																	.getElementById("fromInput").value = $(
+																	"#dateRangePicker")
+																	.data(
+																			'daterangepicker').startDate
+																	.format('DD/MM/YYYY');
+															;
+															document
+																	.getElementById("toInput").value = $(
 																	"#dateRangePicker")
 																	.data(
 																			'daterangepicker').endDate
-																	.format('YYYY-MM-DD');
-															console.log(myName);
-															$("#date").html(
-																	myName);
+																	.format('DD/MM/YYYY');
+															;
+
 														});
 									</script>
 								</div>
@@ -266,7 +297,6 @@
 	<br>
 	<br>
 	<br>
-
 </body>
 
 

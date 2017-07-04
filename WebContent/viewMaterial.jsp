@@ -68,66 +68,65 @@
 											value="01/01/2015 - 01/31/2015" /> <i class="book icon"></i>
 									</div>
  -->
+									<c:if test="${sessionScope.Username != null}">
+										<c:if test="${material.status == 1}">
 
-									<c:if test="${material.status == 1}">
-
-										<form class="ui form" method="post"
-											action="BorrowMaterialServlet">
-											<div class="ui action input fluid">
-												<input type="text" name="daterange" id="dateRangePicker"
-													value="01/01/2015 - 01/31/2015" />
-												<div id="borrow" class="ui green right button">Set</div>
-											</div>
-											<script type="text/javascript">
-												$(function() {
-													$('input[name="daterange"]')
-															.daterangepicker();
-												});
-											</script>
-											<br> <br>
-											<h3 class="ui header">Verify Details</h3>
-											<div class="ui fitted divider"></div>
-											<br>
-
-											<div class="ui action input fluid">
-												<div class="ui labeled input">
-													<div class="ui label">From:</div>
-													<input type="text" id="fromString" name="fromString" />
+											<form class="ui form" method="post"
+												action="BorrowMaterialServlet">
+												<div class="ui action input fluid">
+													<input type="text" name="daterange" id="dateRangePicker"
+														value="01/01/2015 - 01/31/2015" />
+													<div id="borrow" class="ui green right button">Set</div>
 												</div>
-											</div>
-											<br>
-											<div class="ui action input fluid">
-												<div class="ui labeled input">
-													<div class="ui label">To:</div>
-													<input type="text" id="toString" name="toString" />
+												<script type="text/javascript">
+													$(function() {
+														$(
+																'input[name="daterange"]')
+																.daterangepicker();
+													});
+												</script>
+												<br> <br>
+												<h3 class="ui header">Verify Details</h3>
+												<div class="ui fitted divider"></div>
+												<br>
+
+												<div class="ui action input fluid">
+													<div class="ui labeled input">
+														<div class="ui label">From:</div>
+														<input type="text" id="fromString" name="fromString" />
+													</div>
 												</div>
-											</div>
-											<br>
+												<br>
+												<div class="ui action input fluid">
+													<div class="ui labeled input">
+														<div class="ui label">To:</div>
+														<input type="text" id="toString" name="toString" />
+													</div>
+												</div>
+												<br>
 
 
-											<button class="ui button green fluid" type="submit">
-												<i class="book icon"></i> Borrow
-											</button>
+												<button class="ui button green fluid" type="submit">
+													<i class="book icon"></i> Borrow
+												</button>
 
 
-											<input type="text" name="materialID"
-												value="${material.materialID}" />
-										</form>
+												<input type="text" name="materialID"
+													value="${material.materialID}" />
+											</form>
 
+										</c:if>
 									</c:if>
-									<c:if test="${material.status == 0}">
 
-										<div class="ui icon message">
-											<i class="inbox icon"></i>
-											<div class="content">
-												<div class="header">Material is currently borrowed</div>
-												<p>It is current borrowed from ${material.dateReserve}
-													until ${material.dateReturn}</p>
-											</div>
+
+									<c:if test="${sessionScope.Username == null}">
+										<div class="ui negative message">
+											<i class="close icon"></i>
+											<div class="header">User actions are restricted</div>
+											<p>Please Login</p>
 										</div>
-
-
 									</c:if>
+
 									<script>
 										$("#borrow")
 												.click(

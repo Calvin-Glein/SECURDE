@@ -13,13 +13,29 @@
 	href="css/semantic/semantic.min.css">
 <script src="css/semantic/semantic.min.js"></script>
 
+
+
+<!-- Include Required Prerequisites -->
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
 <title>Material details</title>
 
 <style>
 </style>
 </head>
 <body>
-	<div id="nav-placeholder"></div>
+	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>
 		<h1 class="ui header headerc">Information</h1>
@@ -44,8 +60,51 @@
 									<img src="images/filler.PNG">
 								</div>
 								<div class="content">
-									<div class="ui fluid large submit button green"
-										onclick="location.href = '\accountdetails.jsp';">Borrow</div>
+									<%-- <div class="ui fluid large submit button green"
+										onclick="location.href = '\accountdetails.jsp';">Borrow as </div>
+									<%=session.getAttribute("Username")%> --%>
+									<!-- 	<div class="ui fluid icon input">
+										<input type="text" name="daterange" id="dateRangePicker"
+											value="01/01/2015 - 01/31/2015" /> <i class="book icon"></i>
+									</div>
+ -->
+
+
+									<div class="ui action input fluid">
+										<input type="text" name="daterange" id="dateRangePicker"
+											value="01/01/2015 - 01/31/2015" />
+										<button id="borrow" class="ui green right labeled icon button">
+											<i class="book icon"></i> Borrow
+										</button>
+									</div>
+
+									<script type="text/javascript">
+										$(function() {
+											$('input[name="daterange"]')
+													.daterangepicker();
+										});
+									</script>
+
+									<br>
+								<!-- 	<div id="borrow" class="ui fluid large submit button green">Borrow
+									</div> -->
+
+									<p id="date">name</p>
+
+									<script>
+										$("#borrow")
+												.click(
+														function() {
+															var myName = $(
+																	"#dateRangePicker")
+																	.data(
+																			'daterangepicker').endDate
+																	.format('YYYY-MM-DD');
+															console.log(myName);
+															$("#date").html(
+																	myName);
+														});
+									</script>
 								</div>
 							</div>
 						</div>
@@ -114,7 +173,9 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Rating
-										<div class="sub header"><c:out value="${material.rating}" /></div>
+										<div class="sub header">
+											<c:out value="${material.rating}" />
+										</div>
 									</div>
 								</h3>
 							</div>
@@ -205,13 +266,6 @@
 	<br>
 	<br>
 	<br>
-
-	<script>
-		$.get("header.html", function(data) {
-			$("#nav-placeholder").replaceWith(data);
-		});
-	</script>
-
 
 </body>
 

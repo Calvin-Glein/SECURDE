@@ -55,6 +55,8 @@ public class AccountServices {
 	public static Account Login(Account a) {
 		
 		Account b = new Account();
+		
+		b.setAccountid(-1);
 		String sql = "Select " + Account.USER_USER_ID + " , " + Account.USER_USERNAME + " from account where "
 				+ Account.USER_USERNAME + " = ? && " + Account.USER_PASSWORD + " = ?;";
 

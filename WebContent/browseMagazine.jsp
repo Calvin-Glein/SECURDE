@@ -57,7 +57,7 @@
 </head>
 <body>
 	<div class="container" style="background-color: white;">
-		<div id="nav-placeholder"></div>
+	<jsp:include page="header.jsp" />
 
 		<br> <br> <br> <br>
 
@@ -104,7 +104,7 @@
 								<td>${c.tags}</td>
 								<td>${c.status}</td>
 								<td>${c.rating}</td>
-								<td><button class="btn btn-primary" id="${c.materialID}">View</button></td>
+								<td><button class="ui button basic green" id="${c.materialID}">View</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -134,9 +134,6 @@
 				}
 			});
 
-			$.get("header.html", function(data) {
-				$("#nav-placeholder").replaceWith(data);
-			});
 
 			$.get("footer.html", function(data) {
 				$("#footer-placeholder").replaceWith(data);

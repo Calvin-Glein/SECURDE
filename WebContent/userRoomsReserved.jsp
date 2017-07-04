@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-	<div id="nav-placeholder"></div>
+	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>
 		<h1 class="ui header headerc">Profile</h1>
@@ -115,11 +115,6 @@
 	<br>
 	<br>
 
-	<script>
-		$.get("header.html", function(data) {
-			$("#nav-placeholder").replaceWith(data);
-		});
-	</script>
 
 
 </body>

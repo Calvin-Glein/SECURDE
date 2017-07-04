@@ -41,7 +41,8 @@
 </head>
 <body>
 	<div class="container" style="background-color: white;">
-		<div id="nav-placeholder"></div>
+			<jsp:include page="header.jsp" />
+
 
 		<br> <br> <br> <br>
 
@@ -260,9 +261,7 @@
 				}
 			});
 
-			$.get("header.html", function(data) {
-				$("#nav-placeholder").replaceWith(data);
-			});
+		
 
 			$.get("footer.html", function(data) {
 				$("#footer-placeholder").replaceWith(data);

@@ -49,22 +49,31 @@ public class LoginServlet extends HttpServlet {
 		Account a = new Account(username, password);
 		
 		Account b = AccountServices.Login(a);
+		
+		if(b.getAccountid()!=-1){
+			HttpSession session = request.getSession(true);
 
-		HttpSession session = request.getSession(true);
+//			// Get session creation time.
+//			Date createTime = new Date(session.getCreationTime());
+	//
+//			// Get last access time of this web page.
+//			Date lastAccessTime = new Date(session.getLastAccessedTime());
 
-//		// Get session creation time.
-//		Date createTime = new Date(session.getCreationTime());
-//
-//		// Get last access time of this web page.
-//		Date lastAccessTime = new Date(session.getLastAccessedTime());
+			
+			session.setAttribute("Username", b.getUsername());
+			session.setAttribute("accountID", b.getAccountid());
+			session.setAttribute("loggedIn", 1);
+
+			
+			request.setAttribute("account", AccountServices.getAccountData(b.getAccountid()));
+			request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+		}
+		else{
+			request.getRequestDispatcher("loginRetry.jsp").forward(request, response);
+
+		}
 
 		
-		session.setAttribute("Username", b.getUsername());
-		session.setAttribute("accountID", b.getAccountid());
-
-		
-		request.setAttribute("account", AccountServices.getAccountData(b.getAccountid()));
-		request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
 
 
 	}

@@ -17,7 +17,7 @@
 </head>
 <body>
 
-	<div id="nav-placeholder"></div>
+	<jsp:include page="header.jsp" />
 
 	<div class="ui container" style="width: 600px; padding-top: 30px;">
 		<br> <br> <br>
@@ -120,11 +120,6 @@
 
 	<div id="footer-placeholder"></div>
 
-	<script>
-		$.get("header.html", function(data) {
-			$("#nav-placeholder").replaceWith(data);
-		});
-	</script>
 
 
 </body>

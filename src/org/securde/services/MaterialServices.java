@@ -489,10 +489,12 @@ public class MaterialServices {
 	}
 
 	public static void addMaterial(Material m) {
+		System.out.println(m.getMaterialType());
 		String sql = "INSERT INTO " + Material.MATERIAL_TABLENAME + " (" + Material.MATERIAL_TITLE + ", "
 				+ Material.MATERIAL_MATERIALTYPE + ", " + Material.MATERIAL_DEWEYLOCATION + ", "
 				+ Material.MATERIAL_AUTHOR + ", " + Material.MATERIAL_PUBLISHER + ", " + Material.MATERIAL_YEAR + ", "
-				+ Material.MATERIAL_TAGS + ") VALUES (?, ?, ?, ?, ?, ?, ?, '2000-01-01', '2000-01-01', 1)";
+				+ Material.MATERIAL_TAGS + ", " + Material.MATERIAL_DATERESERVE + ", " + Material.MATERIAL_DATERETURN
+				+ ", " + Material.MATERIAL_STATUS + ") VALUES (?, ?, ?, ?, ?, ?, ?, '2000-01-01', '2000-01-01', 1)";
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
@@ -507,6 +509,8 @@ public class MaterialServices {
 			pstmt.setString(4, m.getAuthor());
 			pstmt.setString(5, m.getPublisher());
 			pstmt.setString(6, m.getYear());
+			pstmt.setString(7, m.getTags());
+
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {

@@ -42,7 +42,7 @@
 					<div class="field">
 						<label>Type of Material</label> <select
 							class="ui search dropdown fluid" name="materialType">
-							<option value="">Select</option>
+							<option value="Select">Select</option>
 							<option value="book">Book</option>
 							<option value="magazine">Magazine</option>
 							<option value="thesis">Thesis</option>

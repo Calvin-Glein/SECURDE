@@ -26,7 +26,7 @@
 </div>
 
 
-<c:if test="${sessionScope.accountID == 4}">
+<c:if test="${sessionScope.accountType == 4}">
 	<div class="ui small vertical steps">
 		<div class="step"
 			onclick="location.href = 'administratorCreateAccount.jsp'">
@@ -34,6 +34,19 @@
 			<div class="content">
 				<div class="title">Create Account</div>
 				<div class="description">Create any account</div>
+			</div>
+		</div>
+	</div>
+</c:if>
+
+<c:if
+	test="${sessionScope.accountType == 2 || sessionScope.accountType == 3}">
+	<div class="ui small vertical steps">
+		<div class="step" onclick="location.href = 'staffManageMaterial.jsp'">
+			<i class="user icon"></i>
+			<div class="content">
+				<div class="title">Add Material</div>
+				<div class="description">Add Material to the library</div>
 			</div>
 		</div>
 	</div>

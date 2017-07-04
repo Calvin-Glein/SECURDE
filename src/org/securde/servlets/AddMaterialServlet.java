@@ -44,7 +44,7 @@ public class AddMaterialServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String title = request.getParameter("title");
-		String materialType = request.getParameter("accountType");
+		String materialType = request.getParameter("materialType");
 		String location = request.getParameter("location");
 		String author = request.getParameter("author");
 		String publisher = request.getParameter("publisher");

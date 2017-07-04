@@ -67,6 +67,60 @@ public class MaterialServices {
 		return books;
 	}
 
+	public static ArrayList<Material> getAllMaterials() {
+
+		ArrayList<Material> materials = new ArrayList<Material>();
+
+		Material material = new Material();
+
+		String sql = "Select * from readingMaterial;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				material = new Material();
+				material.setAuthor(rs.getString(Material.MATERIAL_AUTHOR));
+				material.setDateReserve(rs.getDate(Material.MATERIAL_DATERESERVE));
+				material.setDateReturn(rs.getDate(Material.MATERIAL_DATERETURN));
+				material.setLocation(rs.getString(Material.MATERIAL_DEWEYLOCATION));
+				material.setMaterialID(rs.getInt(Material.MATERIAL_MATERIALID));
+				material.setMaterialType(rs.getString(Material.MATERIAL_MATERIALTYPE));
+				material.setPublisher(rs.getString(Material.MATERIAL_PUBLISHER));
+				material.setStatus(rs.getInt(Material.MATERIAL_STATUS));
+				material.setTags(rs.getString(Material.MATERIAL_TAGS));
+				material.setYear(rs.getString(Material.MATERIAL_YEAR));
+				material.setTitle(rs.getString(Material.MATERIAL_TITLE));
+
+				material.setRating(getAverageRating(material.getMaterialID()));
+
+				materials.add(material);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return materials;
+	}
+
 	public static ArrayList<Material> getMagazines() {
 
 		ArrayList<Material> magazines = new ArrayList<Material>();

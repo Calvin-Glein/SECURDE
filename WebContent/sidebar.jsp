@@ -42,11 +42,18 @@
 <c:if
 	test="${sessionScope.accountType == 2 || sessionScope.accountType == 3}">
 	<div class="ui small vertical steps">
-		<div class="step" onclick="location.href = 'staffManageMaterial.jsp'">
+		<div class="step" onclick="location.href = 'staffAddMaterial.jsp'">
 			<i class="user icon"></i>
 			<div class="content">
 				<div class="title">Add Material</div>
 				<div class="description">Add Material to the library</div>
+			</div>
+		</div>
+		<div class="step" onclick="location.href = 'ViewAllMaterialsServlet'">
+			<i class="user icon"></i>
+			<div class="content">
+				<div class="title">Manage Material</div>
+				<div class="description">Manage Material in the library</div>
 			</div>
 		</div>
 	</div>

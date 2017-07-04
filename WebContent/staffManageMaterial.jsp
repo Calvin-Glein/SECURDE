@@ -33,53 +33,42 @@
 			</div>
 
 			<div class="thirteen wide column">
-				<form class="ui form" method="post" action="AddMaterialServlet">
-					<div class="field">
-						<label>Title</label> <input type="text" id="title" name="title"
-							placeholder="What is the name of this material?">
-					</div>
+				<div class="ui container">
+					<table id="example" class="ui definition selectable padded table"
+						cellspacing="
+					0" width="100%">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Location</th>
+								<th>Author</th>
+								<th>Publisher</th>
+								<th>Year</th>
+								<th>Tags</th>
+								<th>Status</th>
+								<th>Rating</th>
+								<th>View</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="c" items="${materials}">
+								<tr>
+									<td>${c.title}</td>
+									<td>${c.location}</td>
+									<td>${c.author}</td>
+									<td>${c.publisher}</td>
+									<td>${c.year}</td>
+									<td>${c.tags}</td>
+									<td>${c.status}</td>
+									<td>${c.rating}</td>
+									<td><button class="ui button basic green"
+											id="${c.materialID}">View</button></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 
-					<div class="field">
-						<label>Type of Material</label> <select
-							class="ui search dropdown fluid" name="materialType">
-							<option value="Select">Select</option>
-							<option value="book">Book</option>
-							<option value="magazine">Magazine</option>
-							<option value="thesis">Thesis</option>
-						</select>
-					</div>
-
-					<div class="field">
-						<label>Dewey Location</label> <input type="text" id="location"
-							name="location" placeholder="Dewey location of material">
-					</div>
-
-					<div class="field">
-						<label>Author</label> <input type="text" id="author" name="author"
-							placeholder="Who wrote this material?">
-					</div>
-
-					<div class="field">
-						<label>Publisher</label> <input type="text" id="publisher"
-							name="publisher" placeholder="Who published this material?">
-					</div>
-
-					<div class="field">
-						<label>Year</label> <input type="text" id="year" name="year"
-							placeholder="In what year was this material published?">
-					</div>
-
-					<div class="field">
-						<label>Tags</label> <input type="text" id="tags" name="tags"
-							placeholder="May include one or more tags">
-					</div>
-
-
-					<button class="ui button basic green fluid" type="submit">Register
-						Account</button>
-
-					<br>
-				</form>
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -14,6 +16,21 @@
 
 <style>
 </style>
+
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			//get id of the clicked delete button
+			var material_id = $(this).attr("id");
+
+			//set value of hiddne inpiut to the id
+			$("#hiddeninput").val(material_id);
+
+			//submit form automatically
+			$("form").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -27,7 +44,8 @@
 		<div class="ui grid">
 			<div class="three wide column">
 				<div class="ui small vertical steps">
-					<div class="step" 	onclick="location.href = 'userAccountDetails.jsp'">
+					<div class="step"
+						onclick="location.href = 'userAccountDetails.jsp'">
 						<i class="user icon"></i>
 						<div class="content">
 							<div class="title">Profile</div>
@@ -42,7 +60,7 @@
 							<div class="description">View your borrowed materials</div>
 						</div>
 					</div>
-					<div class="step" 	onclick="location.href = 'userRoomsReserved.jsp'">
+					<div class="step" onclick="location.href = 'userRoomsReserved.jsp'">
 						<i class="university icon"></i>
 						<div class="content">
 							<div class="title">Room Reservations</div>
@@ -75,32 +93,24 @@
 									<th>Tags</th>
 									<th>Status</th>
 									<th>Rating</th>
-									<th>Action</th>
+									<th>View</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td><button class="ui red button fluid">Red</button></td>
-								</tr>
-								<tr>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td><button class="ui red button fluid">Red</button></td>
-								</tr>
+								<c:forEach var="c" items="${materials}">
+									<tr>
+										<td>${c.title}</td>
+										<td>${c.location}</td>
+										<td>${c.author}</td>
+										<td>${c.publisher}</td>
+										<td>${c.year}</td>
+										<td>${c.tags}</td>
+										<td>${c.status}</td>
+										<td>${c.rating}</td>
+										<td><button class="ui button basic green"
+												id="${c.materialID}">Return</button></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -115,6 +125,9 @@
 	<br>
 	<br>
 
+	<form action="ReturnMaterialServlet" method="POST">
+		<input id="hiddeninput" name="material_id" type="hidden">
+	</form>
 
 
 </body>

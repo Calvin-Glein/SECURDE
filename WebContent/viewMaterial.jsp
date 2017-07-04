@@ -115,6 +115,19 @@
 										</form>
 
 									</c:if>
+									<c:if test="${material.status == 0}">
+
+										<div class="ui icon message">
+											<i class="inbox icon"></i>
+											<div class="content">
+												<div class="header">Material is currently borrowed</div>
+												<p>It is current borrowed from ${material.dateReserve}
+													until ${material.dateReturn}</p>
+											</div>
+										</div>
+
+
+									</c:if>
 									<script>
 										$("#borrow")
 												.click(

@@ -24,18 +24,44 @@
 				</c:if>
 				<c:if test="${sessionScope.Username != null}">
 					<div class="item">
-						Welcome:
 						<%-- <c:out
 								value="${account.username}" />
 						</a> --%>
 						<%=session.getAttribute("Username")%>
+						&nbsp;
+
+						<div class="ui dropdown">
+							<div class="text">
+								<img class="ui avatar image" src="images/avatar.jpg">
+							</div>
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item"
+									onclick="document.location.href='ViewProfileServlet';">
+									<span class="description"></span> Profile
+								</div>
+								<div class="item" onclick="document.location.href='ViewBorrowedServlet';">
+									<span class="description"></span> Materials
+								</div>
+								<div class="item">
+									<span class="description"></span> Rooms
+								</div>
+								<div class="divider"></div>
+								<div class="item">
+									<a href="LogoutServlet" class="ui red button fluid">Logout</a>
+								</div>
+
+							</div>
+						</div>
 					</div>
-					<div class="item">
-						<a href="LogoutServlet" class="ui red button">Logout</a>
-					</div>
+					<div class="item"></div>
 				</c:if>
 
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	$('.ui.dropdown').dropdown();
+</script>

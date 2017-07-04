@@ -262,8 +262,8 @@ public class MaterialServices {
 		return averageRating;
 	}
 
-	public static void borrowBook(int accountID, int materialID, String from, String to) {
-		String sql = "INSERT into borrow(accountID, materialID, dateBorrow, dateReturn) values (?,?, ?,?)";
+	public static void borrowMaterial(int accountID, int materialID, String from, String to) {
+		String sql = "INSERT into borrow(accountID, materialID, dateBorrow, dateReturn, returned) values (?,?, ?,?, 0)";
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
@@ -353,6 +353,36 @@ public class MaterialServices {
 			pstmt.setDate(2, toDate);
 			pstmt.setInt(3, materialID);
 
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+	}
+
+	public static void returnBorrow(int materialID, int accountID) {
+		String sql = "Update borrow SET returned = 1 WHERE materialID = ? && accountID = ? && returned = 0;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, materialID);
+
+			pstmt.setInt(2, accountID);
 
 			pstmt.executeUpdate();
 
@@ -371,4 +401,91 @@ public class MaterialServices {
 
 		}
 	}
+
+	public static ArrayList<Material> BorrowedByAccount(int accountID) {
+		String sql = "Select * from readingmaterial where materialId in (select materialID from borrow where accountID = ? && returned =0);";
+
+		ArrayList<Material> borrowed = new ArrayList<Material>();
+		Material m = new Material();
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accountID);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				m = new Material();
+
+				m.setAuthor(rs.getString(Material.MATERIAL_AUTHOR));
+				m.setDateReserve(rs.getDate(Material.MATERIAL_DATERESERVE));
+				m.setDateReturn(rs.getDate(Material.MATERIAL_DATERETURN));
+				m.setLocation(rs.getString(Material.MATERIAL_DEWEYLOCATION));
+				m.setMaterialID(rs.getInt(Material.MATERIAL_MATERIALID));
+				m.setMaterialType(rs.getString(Material.MATERIAL_MATERIALTYPE));
+				m.setPublisher(rs.getString(Material.MATERIAL_PUBLISHER));
+				m.setStatus(rs.getInt(Material.MATERIAL_STATUS));
+				m.setTags(rs.getString(Material.MATERIAL_TAGS));
+				m.setYear(rs.getString(Material.MATERIAL_YEAR));
+				m.setTitle(rs.getString(Material.MATERIAL_TITLE));
+
+				m.setRating(getAverageRating(m.getMaterialID()));
+
+				borrowed.add(m);
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+
+		return borrowed;
+	}
+
+	public static void returnMaterial(int materialID) {
+		String sql = "Update readingmaterial SET status = 1 WHERE materialId = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, materialID);
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+	}
+
 }

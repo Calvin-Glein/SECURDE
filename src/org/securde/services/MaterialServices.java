@@ -315,6 +315,49 @@ public class MaterialServices {
 		return averageRating;
 	}
 
+	public static int canComment(int accountID, int materialID) {
+		
+		int canComment =0;
+		String sql = "select materialID from borrow where accountID = ? and materialID = ? group by materialID;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accountID);
+			pstmt.setInt(2, materialID);
+
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				if(rs.getInt("materialID") == materialID){
+					canComment = 1;
+				}
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return canComment;
+	}
+
 	public static void borrowMaterial(int accountID, int materialID, String from, String to) {
 		String sql = "INSERT into borrow(accountID, materialID, dateBorrow, dateReturn, returned) values (?,?, ?,?, 0)";
 

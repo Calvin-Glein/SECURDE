@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.securde.beans.Material;
 import org.securde.beans.Review;
 import org.securde.services.MaterialServices;
@@ -60,13 +59,16 @@ public class ViewBookServlet extends HttpServlet {
 		System.out.println("status: " + m.getStatus());
 		
 		
+		
+
+		int canComment = MaterialServices.canComment(Integer.parseInt(request.getSession(false).getAttribute("accountID").toString()), materialID);
 	
 		
 		ArrayList<Review> reviews = ReviewServices.getReviews(materialID);
 		
 		
+		request.setAttribute("commentable", canComment);
 		request.setAttribute("reviews", reviews);
-
 		request.setAttribute("material", m);
 		request.getRequestDispatcher("viewMaterial.jsp").forward(request, response);
 	}

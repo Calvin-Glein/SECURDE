@@ -35,7 +35,7 @@
 			<div class="thirteen wide column">
 				<div class="ui segment">
 					<div class="ui grid">
-						<div class="ui four wide column">
+						<div class="ui six wide column">
 							<div class="ui card">
 								<div class="image">
 									<img src="images/filler.PNG">
@@ -102,7 +102,7 @@
 
 												Account ID: <input type="text" name="materialID"
 													value="${material.materialID}" />
-													
+
 												<button class="ui button red fluid" type="submit">
 													<i class="book icon"></i> Delete
 												</button>
@@ -157,13 +157,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="ui twelve wide column">
+						<div class="ui ten wide column">
 							<div class="ui segment">
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Title
-										<div class="sub header">
-											<c:out value="${material.title}" />
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">
+													<i class="book icon"></i>
+												</div>
+												<input type="text" id="title" name="title"
+													value="${material.title}" />
+											</div>
 										</div>
 									</div>
 								</h3>
@@ -172,8 +178,14 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Author
-										<div class="sub header">
-											<c:out value="${material.author}" />
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">
+													<i class="book icon"></i>
+												</div>
+												<input type="text" id="author" name="author"
+													value="${material.author}" />
+											</div>
 										</div>
 									</div>
 								</h3>
@@ -182,8 +194,14 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Year
-										<div class="sub header">
-											<c:out value="${material.year}" />
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">
+													<i class="book icon"></i>
+												</div>
+												<input type="text" id="year" name="year"
+													value="${material.year}" />
+											</div>
 										</div>
 									</div>
 								</h3>
@@ -192,8 +210,14 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Location
-										<div class="sub header">
-											<c:out value="${material.location}" />
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">
+													<i class="book icon"></i>
+												</div>
+												<input type="text" id="location" name="location"
+													value="${material.location}" />
+											</div>
 										</div>
 									</div>
 								</h3>
@@ -202,8 +226,14 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Publisher
-										<div class="sub header">
-											<c:out value="${material.publisher}" />
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">
+													<i class="book icon"></i>
+												</div>
+												<input type="text" id="publisher" name="publisher"
+													value="${material.publisher}" />
+											</div>
 										</div>
 									</div>
 								</h3>
@@ -212,8 +242,14 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Status
-										<div class="sub header">
-											<c:out value="${material.status}" />
+										<div class="ui action input fluid">
+											<div class="ui labeled input">
+												<div class="ui label">
+													<i class="book icon"></i>
+												</div>
+												<input type="text" id="status" name="status"
+													value="${material.status}" />
+											</div>
 										</div>
 									</div>
 								</h3>

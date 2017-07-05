@@ -2,6 +2,7 @@ package org.securde.beans;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Room implements Serializable {
 	
@@ -17,13 +18,13 @@ public class Room implements Serializable {
 	private String roomName;
 	private String roomLocation;
 	private String roomAvail;
-	private Date timeOccupied;
-	private Date timeOut;
+	private Timestamp timeOccupied;
+	private Timestamp timeOut;
 	
 	public Room(){}
 	
 	public Room(int roomId, String roomName, String roomLocation, String roomAvail,
-			Date timeOccupied, Date timeOut) {
+			Timestamp timeOccupied, Timestamp timeOut) {
 		super();
 		this.roomId = roomId;
 		this.roomName = roomName;
@@ -65,19 +66,19 @@ public class Room implements Serializable {
 		this.roomAvail = roomAvail;
 	}
 
-	public Date getTimeOccupied() {
+	public Timestamp getTimeOccupied() {
 		return timeOccupied;
 	}
 
-	public void setTimeOccupied(Date timeOccupied) {
+	public void setTimeOccupied(Timestamp timeOccupied) {
 		this.timeOccupied = timeOccupied;
 	}
 
-	public Date getTimeOut() {
+	public Timestamp getTimeOut() {
 		return timeOut;
 	}
 
-	public void setTimeOut(Date timeOut) {
+	public void setTimeOut(Timestamp timeOut) {
 		this.timeOut = timeOut;
 	}
 

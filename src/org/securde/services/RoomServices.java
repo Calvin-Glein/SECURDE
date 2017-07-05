@@ -5,9 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.securde.beans.Account;
 import org.securde.beans.Material;
@@ -40,8 +42,8 @@ public class RoomServices {
 				room.setRoomName(rs.getString(Room.ROOM_NAME));
 				room.setRoomLocation(rs.getString(Room.ROOM_LOCATION));
 				room.setRoomAvail(rs.getString(Room.ROOM_AVAILABLE));
-				room.setTimeOccupied(rs.getDate(Room.ROOM_TIME_OCCUPIED));
-				room.setTimeOut(rs.getDate(Room.ROOM_TIME_OUT));
+				room.setTimeOccupied(rs.getTimestamp(Room.ROOM_TIME_OCCUPIED));
+				room.setTimeOut(rs.getTimestamp(Room.ROOM_TIME_OUT));
 
 				rooms.add(room);
 
@@ -82,8 +84,8 @@ public class RoomServices {
 				room.setRoomName(rs.getString(Room.ROOM_NAME));
 				room.setRoomLocation(rs.getString(Room.ROOM_LOCATION));
 				room.setRoomAvail(rs.getString(Room.ROOM_AVAILABLE));
-				room.setTimeOccupied(rs.getDate(Room.ROOM_TIME_OCCUPIED));
-				room.setTimeOut(rs.getDate(Room.ROOM_TIME_OUT));
+				room.setTimeOccupied(rs.getTimestamp(Room.ROOM_TIME_OCCUPIED));
+				room.setTimeOut(rs.getTimestamp(Room.ROOM_TIME_OUT));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,8 +124,10 @@ public class RoomServices {
 		System.out.println("From: " + from);
 		System.out.println("to: " + to);
 
-		Date fromDate = dateToSQLDate(from);
-		Date toDate = dateToSQLDate(to);
+		Timestamp fromDate = dateToSQLDate(from);
+		Timestamp toDate = dateToSQLDate(to);
+		
+		/*
 		try {
 			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
 					new SimpleDateFormat("MM/dd/yyyy hh:mm").parse(from).getTime());
@@ -132,7 +136,8 @@ public class RoomServices {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		*/
+		
 		try {
 
 			pstmt = conn.prepareStatement(sql);
@@ -140,8 +145,8 @@ public class RoomServices {
 			pstmt.setInt(1, accountID);
 
 			pstmt.setInt(2, roomID+10000);
-			pstmt.setDate(3, fromDate);
-			pstmt.setDate(4, toDate);
+			pstmt.setTimestamp(3, fromDate);
+			pstmt.setTimestamp(4, toDate);
 			pstmt.setInt(5, 0);
 
 			pstmt.executeUpdate();
@@ -166,9 +171,9 @@ public class RoomServices {
 	public static void reserveRoomAccountTable(int roomID, String from, String to) {
 		String sql = "Update meetingroom SET roomAvail = 0, timeOccupied = ?, timeOut = ? WHERE roomId = ?;";
 
-		Date fromDate = dateToSQLDate(from);
+		Timestamp fromDate = dateToSQLDate(from);
 
-		Date toDate = dateToSQLDate(to);
+		Timestamp toDate = dateToSQLDate(to);
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
@@ -176,9 +181,9 @@ public class RoomServices {
 		try {
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setDate(1, fromDate);
+			pstmt.setTimestamp(1, fromDate);
 
-			pstmt.setDate(2, toDate);
+			pstmt.setTimestamp(2, toDate);
 			pstmt.setInt(3, roomID);
 
 			pstmt.executeUpdate();
@@ -199,18 +204,25 @@ public class RoomServices {
 		}
 	}
 	
-	public static Date dateToSQLDate(String date) {
-		Date finalDate = null;
+	public static Timestamp dateToSQLDate(String date) {
+		java.sql.Timestamp sqlTimeStamp = null;
 		try {
-			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
+			sqlTimeStamp = new java.sql.Timestamp(
 					new SimpleDateFormat("MM/dd/yyyy hh:mm").parse(date).getTime());
-			finalDate = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
+			if (date.contains("PM")){
+			Calendar cal = Calendar.getInstance();
+		    cal.setTimeInMillis(sqlTimeStamp.getTime());
+		    cal.add(Calendar.HOUR_OF_DAY, 12);
+		    sqlTimeStamp = new Timestamp(cal.getTime().getTime());
+			}
+			System.out.println(sqlTimeStamp);
+			//finalDate = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		return finalDate;
+		return sqlTimeStamp;
 
 	}
 }

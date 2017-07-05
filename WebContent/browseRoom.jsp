@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +41,21 @@
 }
 </style>
 
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			//get id of the clicked delete button
+			var room_id = $(this).attr("id");
+
+			//set value of hiddne inpiut to the id
+			$("#hiddeninput").val(room_id);
+
+			//submit form automatically
+			$("form").submit();
+		});
+	});
+</script>
+
 </head>
 <body>
 	<div class="container" style="background-color: white;">
@@ -69,7 +87,7 @@
 						<tr>
 							<th>Room Name</th>
 							<th>Room Location</th>
-							<th>Room Available</th>
+							<th>Availability</th>
 							<th>Time Occupied</th>
 							<th>Time Out</th>
 							<th>View</th>
@@ -83,7 +101,7 @@
 								<td>${c.roomAvail}</td>
 								<td>${c.timeOccupied}</td>
 								<td>${c.timeOut}</td>
-								<td><button class="ui button basic green" id="${c.materialID}">View</button></td>
+								<td><button class="ui button basic green" id="${c.roomId}">View</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -91,6 +109,9 @@
 			</div>
 		</div>
 
+		<form action="ViewRoomServlet" method="POST">
+			<input id="hiddeninput" name="room_id" type="hidden">
+		</form>
 
 		<script>
 			$('.card').hover(function() {

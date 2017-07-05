@@ -1,6 +1,7 @@
 package org.securde.services;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,11 +9,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import org.hpe.beans.Data;
-import org.hpe.services.Exception;
-import org.hpe.services.String;
-import org.securde.beans.Account;
 import org.securde.beans.Material;
 import org.securde.db.DBPool;
 
@@ -393,12 +389,11 @@ public class MaterialServices {
 	}
 
 	public static void borrowMaterialAccountTable(int materialID, String from, String to) {
+
 		String sql = "Update readingmaterial SET status = 0, dateReserve = ?, dateReturn = ? WHERE materialId = ?;";
 
 		Date fromDate = dateToSQLDate(from);
-
 		Date toDate = dateToSQLDate(to);
-
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
 
@@ -641,6 +636,44 @@ public class MaterialServices {
 			} catch (Exception e2) {
 			}
 		}
+	}
+
+	public static void editMaterial(Material m) {
+		String sql = "Update readingmaterial SET materialType = ?, deweyLocation = ?, author = ?, publisher = ?, "
+				+ "year = ?, tags = ?, status = ?, dateReserve = '2000-01-01', dateReturn = '2000-01-01', title = ? WHERE materialId  = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMaterialType());
+			pstmt.setString(2, m.getLocation());
+			pstmt.setString(3, m.getAuthor());
+			pstmt.setString(4, m.getPublisher());
+			pstmt.setString(5, m.getYear());
+			pstmt.setString(6, m.getTags());
+			pstmt.setInt(7, m.getStatus());
+			pstmt.setString(8, m.getTitle());
+			pstmt.setInt(9, m.getMaterialID());
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+
 	}
 
 }

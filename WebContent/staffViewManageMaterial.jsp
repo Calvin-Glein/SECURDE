@@ -98,18 +98,13 @@
 
 											<form class="ui form" method="post"
 												action="DeleteMaterialServlet">
-
-
 												Account ID: <input type="text" name="materialID"
 													value="${material.materialID}" />
 
 												<button class="ui button red fluid" type="submit">
 													<i class="book icon"></i> Delete
 												</button>
-
 											</form>
-
-
 										</c:if>
 
 										<c:if test="${material.status == 0}">
@@ -158,112 +153,164 @@
 							</div>
 						</div>
 						<div class="ui ten wide column">
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Title
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">
-													<i class="book icon"></i>
+
+							<form class="ui form" method="post" action="EditMaterialServlet">
+								<div class="ui segment">
+									Account ID: <input type="text" name="materialID"
+										value="${material.materialID}" />
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Title
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="title" name="title"
+														value="${material.title}" />
 												</div>
-												<input type="text" id="title" name="title"
-													value="${material.title}" />
 											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Author
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">
-													<i class="book icon"></i>
+									</h3>
+								</div>
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Author
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="author" name="author"
+														value="${material.author}" />
 												</div>
-												<input type="text" id="author" name="author"
-													value="${material.author}" />
 											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Year
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">
-													<i class="book icon"></i>
+									</h3>
+								</div>
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Year
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="year" name="year"
+														value="${material.year}" />
 												</div>
-												<input type="text" id="year" name="year"
-													value="${material.year}" />
 											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Location
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">
-													<i class="book icon"></i>
+									</h3>
+								</div>
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Location
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="location" name="location"
+														value="${material.location}" />
 												</div>
-												<input type="text" id="location" name="location"
-													value="${material.location}" />
 											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Publisher
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">
-													<i class="book icon"></i>
+									</h3>
+								</div>
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Publisher
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="publisher" name="publisher"
+														value="${material.publisher}" />
 												</div>
-												<input type="text" id="publisher" name="publisher"
-													value="${material.publisher}" />
 											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Status
-										<div class="ui action input fluid">
-											<div class="ui labeled input">
-												<div class="ui label">
-													<i class="book icon"></i>
+									</h3>
+								</div>
+
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Tags
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="publisher" name="tags"
+														value="${material.tags}" />
 												</div>
-												<input type="text" id="status" name="status"
-													value="${material.status}" />
 											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
-							<div class="ui segment">
-								<h3 class="ui header left aligned">
-									<div class="content">
-										Rating
-										<div class="sub header">
-											<c:out value="${material.rating}" />
+									</h3>
+								</div>
+
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Material Type
+											<div class="ui action input fluid">
+												<div class="field">
+													<label>Type</label> <select
+														class="ui search dropdown fluid" name="materialType">
+														<option value="">Select</option>
+														<option value="book">Book</option>
+														<option value="magazine">Magazine</option>
+														<option value="thesis">Thesis</option>
+													</select>
+												</div>
+											</div>
 										</div>
-									</div>
-								</h3>
-							</div>
+									</h3>
+								</div>
+
+
+
+
+
+
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Status
+											<div class="ui action input fluid">
+												<div class="ui labeled input">
+													<div class="ui label">
+														<i class="book icon"></i>
+													</div>
+													<input type="text" id="status" name="status"
+														value="${material.status}" />
+												</div>
+											</div>
+										</div>
+									</h3>
+								</div>
+								<div class="ui segment">
+									<h3 class="ui header left aligned">
+										<div class="content">
+											Rating
+											<div class="sub header">
+												<c:out value="${material.rating}" />
+											</div>
+										</div>
+									</h3>
+								</div>
+
+
+								<button class="ui button green fluid" type="submit">
+									<i class="book icon"></i> Edit
+								</button>
+							</form>
 							<br>
 							<div class="ui comments">
 								<h3 class="ui dividing header">Comments</h3>
@@ -330,16 +377,15 @@
 											</div>
 										</div>
 								</div>
-								<form class="ui reply form">
+								<!-- <form class="ui reply form">
 									<div class="field">
 										<textarea></textarea>
 									</div>
 									<div class="ui blue labeled submit icon button">
 										<i class="icon edit"></i> Add Reply
 									</div>
-								</form>
+								</form> -->
 							</div>
-
 						</div>
 					</div>
 				</div>

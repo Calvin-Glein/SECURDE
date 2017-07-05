@@ -50,9 +50,9 @@ public class StaffReturnMaterialServlet extends HttpServlet {
 
 		int materialID = Integer.parseInt(request.getParameter("material_id"));
 
-/*		Material m = MaterialServices.getMaterialData(materialID);
+		Material m = MaterialServices.getMaterialData(materialID);
 
-		request.setAttribute("material", m);*/
+		request.setAttribute("material", m);
 		request.getRequestDispatcher("ViewAllMaterialsServlet").forward(request, response);
 	}
 

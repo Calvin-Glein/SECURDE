@@ -117,17 +117,11 @@ public class AccountServices {
 		 * (ParseException e1) { // TODO Auto-generated catch block
 		 * e1.printStackTrace(); }
 		 */
-		System.out.println("0");
 
 		try {
-			System.out.println("0.1");
-
 			pstmt = conn.prepareStatement(sql);
 
-			System.out.println("1");
-
 			pstmt.setString(1, a.getUsername());
-
 			pstmt.setString(2, a.getPassword());
 			pstmt.setString(3, a.getEmail());
 			pstmt.setString(4, a.getFirstname());
@@ -142,11 +136,8 @@ public class AccountServices {
 			pstmt.setInt(13, a.getIsChanged());
 			pstmt.setInt(14, a.getIsActive());
 
-			System.out.println("done");
-
 			pstmt.executeUpdate();
 
-			System.out.println("done");
 
 		} catch (SQLException e) {
 

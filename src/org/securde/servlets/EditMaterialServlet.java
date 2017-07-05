@@ -57,6 +57,8 @@ public class EditMaterialServlet extends HttpServlet {
 		
 		Material m = new Material(materialID, title, materialType, deweyLocation, author, publisher, year, tags, status, null, null);
 	
+		
+		System.out.println("Type of material: "  + materialType);
 		MaterialServices.editMaterial(m);
 		
 		Material m1 = MaterialServices.getMaterialData(materialID);

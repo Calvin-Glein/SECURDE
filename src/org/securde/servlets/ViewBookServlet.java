@@ -1,6 +1,7 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import org.securde.beans.Material;
+import org.securde.beans.Review;
 import org.securde.services.MaterialServices;
+import org.securde.services.ReviewServices;
 
 /**
  * Servlet implementation class ViewBookServlet
@@ -55,6 +58,14 @@ public class ViewBookServlet extends HttpServlet {
 		System.out.println("year: " + m.getYear());
 		System.out.println("tags: " + m.getTags());
 		System.out.println("status: " + m.getStatus());
+		
+		
+	
+		
+		ArrayList<Review> reviews = ReviewServices.getReviews(materialID);
+		
+		
+		request.setAttribute("reviews", reviews);
 
 		request.setAttribute("material", m);
 		request.getRequestDispatcher("viewMaterial.jsp").forward(request, response);

@@ -227,7 +227,7 @@
 											Publisher
 											<div class="ui action input fluid">
 												<div class="ui labeled input">
-													<div class="ui label">
+												<div class="ui label">
 														<i class="book icon"></i>
 													</div>
 													<input type="text" id="publisher" name="publisher"

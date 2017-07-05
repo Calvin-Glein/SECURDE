@@ -106,8 +106,10 @@ public class RoomServices {
 		
 	}
 	
+	
+	
 	public static void reserveRoom(int accountID, int roomID, String from, String to) {
-		String sql = "INSERT INTO borrow SET accountID = ?, materialID = ?, dateBorrow = ?, dateReturn = ?, returned = ?";
+		String sql = "INSERT INTO reserve SET accountID = ?, roomID = ?, fromTime = ?, toTime = ?, status = ?";
 
 		Connection conn = DBPool.getInstance().getConnection();
 		PreparedStatement pstmt = null;
@@ -127,6 +129,38 @@ public class RoomServices {
 		Timestamp fromDate = dateToSQLDate(from);
 		Timestamp toDate = dateToSQLDate(to);
 		
+		long fromMs = fromDate.getTime();
+		long toMs = toDate.getTime();
+		boolean pass = true;
+		
+		ArrayList<Long> compareLong = new ArrayList<Long>();
+		compareLong = getReservationLong();
+		int i = 1;
+		while(i < compareLong.size()){
+			System.out.println("Loop Number" + i);
+			System.out.println("FromMS : " + fromMs);
+			System.out.println("toMS : " + toMs);
+			System.out.println("CompareLong(from) : " + compareLong.get(i));
+			System.out.println("CompareLong(to) : " + compareLong.get(i+1));
+			if (compareLong.get(i) <= fromMs && compareLong.get(i+1) > fromMs){
+				System.out.println("From");
+				pass = false;
+			}
+			
+			if (compareLong.get(i) < toMs && compareLong.get(i+1) > toMs){
+				pass = false;
+				System.out.println("To");
+			}
+			
+			i += 2;
+		}
+		
+		if (fromMs == toMs){
+			pass = false;
+		}
+			
+			
+		
 		/*
 		try {
 			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
@@ -138,13 +172,14 @@ public class RoomServices {
 		}
 		*/
 		
+		if (pass){
 		try {
 
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, accountID);
 
-			pstmt.setInt(2, roomID+10000);
+			pstmt.setInt(2, roomID);
 			pstmt.setTimestamp(3, fromDate);
 			pstmt.setTimestamp(4, toDate);
 			pstmt.setInt(5, 0);
@@ -165,11 +200,14 @@ public class RoomServices {
 			}
 
 		}
-
+		}
+		else{
+			System.out.println("Failed!");
+		}
 	}
 
 	public static void reserveRoomAccountTable(int roomID, String from, String to) {
-		String sql = "Update meetingroom SET roomAvail = 0, timeOccupied = ?, timeOut = ? WHERE roomId = ?;";
+		String sql = "Update meetingroom SET roomAvail = ?, timeOccupied = ?, timeOut = ? WHERE roomId = ?;";
 
 		Timestamp fromDate = dateToSQLDate(from);
 
@@ -181,10 +219,12 @@ public class RoomServices {
 		try {
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setTimestamp(1, fromDate);
+			
+			pstmt.setInt(1, 1);
+			pstmt.setTimestamp(2, fromDate);
 
-			pstmt.setTimestamp(2, toDate);
-			pstmt.setInt(3, roomID);
+			pstmt.setTimestamp(3, toDate);
+			pstmt.setInt(4, roomID);
 
 			pstmt.executeUpdate();
 
@@ -204,17 +244,138 @@ public class RoomServices {
 		}
 	}
 	
+	public static ArrayList<Long> getReservationLong(){
+		ArrayList<Long> timeArray = new ArrayList<Long>();
+		int index = 0;
+		timeArray.add(-1L);
+		String sql = "Select fromTime, toTime, status from reserve;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				Timestamp f = rs.getTimestamp("fromTime");
+				Timestamp s = rs.getTimestamp("toTime");
+				
+				long first = f.getTime();
+				long second = s.getTime();
+				int stat = rs.getInt("status");
+				
+				if (stat == 0){
+					timeArray.add(first);
+					timeArray.add(second);
+				}
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return timeArray;
+	}
+	
+	public static ArrayList<String> getreservationSTime(int roomID){
+		ArrayList<String> timeArray = new ArrayList<String>();
+		String sql = "Select fromTime from reserve where status = ? and roomID = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 0);
+			pstmt.setInt(2, roomID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				String f = rs.getTimestamp("fromTime").toString();
+				
+				timeArray.add(f);
+			}
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return timeArray;
+	}
+	
+	public static ArrayList<String> getreservationFTime(int roomID){
+		ArrayList<String> timeArray = new ArrayList<String>();
+		String sql = "Select toTime from reserve where status = ? and roomID = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 0);
+			pstmt.setInt(2, roomID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				String f = rs.getTimestamp("toTime").toString();
+				
+				timeArray.add(f);
+			}
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return timeArray;
+	}
+	
 	public static Timestamp dateToSQLDate(String date) {
 		java.sql.Timestamp sqlTimeStamp = null;
 		try {
 			sqlTimeStamp = new java.sql.Timestamp(
-					new SimpleDateFormat("MM/dd/yyyy hh:mm").parse(date).getTime());
-			if (date.contains("PM")){
-			Calendar cal = Calendar.getInstance();
-		    cal.setTimeInMillis(sqlTimeStamp.getTime());
-		    cal.add(Calendar.HOUR_OF_DAY, 12);
-		    sqlTimeStamp = new Timestamp(cal.getTime().getTime());
-			}
+					new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(date).getTime());
 			System.out.println(sqlTimeStamp);
 			//finalDate = Date.valueOf(sqlTimeStamp.toLocalDateTime().toLocalDate());
 		} catch (ParseException e1) {

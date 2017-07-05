@@ -1,6 +1,7 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,10 +43,18 @@ public class ViewRoomServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// a
 		int roomID = Integer.parseInt(request.getParameter("room_id"));
-
+		ArrayList<String> sTime = RoomServices.getreservationSTime(roomID);
+		ArrayList<String> fTime = RoomServices.getreservationFTime(roomID);
+		ArrayList<String> fin = new ArrayList<String>();
+		if (sTime.size() > 0){
+			for (int i = 0; i < sTime.size(); i++){
+				fin.add(sTime.get(i) + " to " + fTime.get(i));			
+			}
+		}
 		Room r = RoomServices.getRoomData(roomID);
 
 		request.setAttribute("room", r);
+		request.setAttribute("time", fin);
 		request.getRequestDispatcher("viewRoom.jsp").forward(request, response);
 	}
 

@@ -49,7 +49,7 @@ public class ReserveRoomServlet extends HttpServlet {
 		int roomId = Integer.parseInt(request.getParameter("roomId"));
 		int accountID = Integer.parseInt((request.getSession(false).getAttribute("accountID").toString()));
 		RoomServices.reserveRoom(accountID, roomId, from, to);
-		RoomServices.reserveRoomAccountTable(roomId, from, to);
+		//RoomServices.reserveRoomAccountTable(roomId, from, to);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("GetRoomServlet");
 		

@@ -82,9 +82,8 @@
 													    $('input[name="daterange"]').daterangepicker({
 													        timePicker: true,
 													        timePickerIncrement: 30,
-													        locale: {
-													            format: 'MM/DD/YYYY h:mm A'
-													        }
+													        format: 'MM/DD/YYYY h:mm A'
+
 													    });
 													});
 												</script>	
@@ -139,14 +138,14 @@
 																	"#dateRangePicker")
 																	.data(
 																			'daterangepicker').startDate
-																	.format('MM/DD/YYYY h:mm A');
+																	.format('MM/DD/YYYY HH:mm');
 															;
 															document
 																	.getElementById("toString").value = $(
 																	"#dateRangePicker")
 																	.data(
 																			'daterangepicker').endDate
-																	.format('MM/DD/YYYY h:mm A');
+																	.format('MM/DD/YYYY HH:mm');
 															;
 
 														});
@@ -168,9 +167,14 @@
 							<div class="ui segment">
 								<h3 class="ui header left aligned">
 									<div class="content">
-										Availability
+										Reserved Time Slots
 										<div class="sub header">
-											<c:out value="${room.roomAvail}" />
+											<c:forEach var="c" items="${time}">
+												<tr>
+													<td>${c}<br></td>
+													
+												</tr>
+											</c:forEach>
 										</div>
 									</div>
 								</h3>

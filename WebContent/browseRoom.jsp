@@ -87,9 +87,6 @@
 						<tr>
 							<th>Room Name</th>
 							<th>Room Location</th>
-							<th>Availability</th>
-							<th>Time Occupied</th>
-							<th>Time Out</th>
 							<th>View</th>
 						</tr>
 					</thead>
@@ -98,9 +95,6 @@
 							<tr>
 								<td>${c.roomName}</td>
 								<td>${c.roomLocation}</td>
-								<td>${c.roomAvail}</td>
-								<td>${c.timeOccupied}</td>
-								<td>${c.timeOut}</td>
 								<td><button class="ui button basic green" id="${c.roomId}">View</button></td>
 							</tr>
 						</c:forEach>

@@ -9,6 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import org.hpe.beans.Data;
+import org.hpe.services.Exception;
+import org.hpe.services.String;
 import org.securde.beans.Account;
 import org.securde.beans.Material;
 import org.securde.db.DBPool;
@@ -583,8 +586,7 @@ public class MaterialServices {
 	}
 
 	public static int returnCurrentBorrowerAccountID(int materialID) {
-		
-		
+
 		int accountID = -1;
 		String sql = "select * from borrow where materialID = ? && returned = 0";
 
@@ -618,8 +620,27 @@ public class MaterialServices {
 			}
 
 		}
-		
+
 		return accountID;
+	}
+
+	public static void deleteMaterial(int materialID) {
+		String sql = "Delete from " + Material.MATERIAL_TABLENAME + " WHERE " + Material.MATERIAL_MATERIALID + " = ?;";
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, materialID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e2) {
+			}
+		}
 	}
 
 }

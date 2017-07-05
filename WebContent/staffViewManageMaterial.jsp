@@ -96,6 +96,20 @@
 													value="${material.materialID}" />
 											</form>
 
+											<form class="ui form" method="post"
+												action="DeleteMaterialServlet">
+
+
+												Account ID: <input type="text" name="materialID"
+													value="${material.materialID}" />
+													
+												<button class="ui button red fluid" type="submit">
+													<i class="book icon"></i> Delete
+												</button>
+
+											</form>
+
+
 										</c:if>
 
 										<c:if test="${material.status == 0}">

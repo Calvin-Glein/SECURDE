@@ -15,16 +15,16 @@ import org.securde.services.MaterialServices;
 import org.securde.services.ReviewServices;
 
 /**
- * Servlet implementation class ViewBookServlet
+ * Servlet implementation class AddReviewServlet
  */
-@WebServlet("/ViewBookServlet")
-public class ViewBookServlet extends HttpServlet {
+@WebServlet("/AddReviewServlet")
+public class AddReviewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ViewBookServlet() {
+	public AddReviewServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,10 +46,16 @@ public class ViewBookServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int accountID = Integer.parseInt(request.getSession(false).getAttribute("accountID").toString());
+		int materialID = Integer.parseInt(request.getParameter("materialID").toString());
+		String comment = request.getParameter("comment");
+		int rating = Integer.parseInt(request.getParameter("rating").toString());
 
-		int materialID = Integer.parseInt(request.getParameter("material_id"));
+		Review r = new Review(accountID, materialID, comment, rating, null,
+				request.getSession(false).getAttribute("Username").toString());
 
-		System.out.println("Mateerialzadsdaaad: " + materialID);
+		ReviewServices.adddReview(r);
+
 		Material m = MaterialServices.getMaterialData(materialID);
 
 		int canComment = MaterialServices.canComment(
@@ -61,6 +67,7 @@ public class ViewBookServlet extends HttpServlet {
 		request.setAttribute("reviews", reviews);
 		request.setAttribute("material", m);
 		request.getRequestDispatcher("viewMaterial.jsp").forward(request, response);
+
 	}
 
 }

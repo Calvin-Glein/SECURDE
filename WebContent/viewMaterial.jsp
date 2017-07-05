@@ -243,14 +243,28 @@
 								</c:forEach>
 
 								<c:if test="${commentable == 1}">
-
-									<form class="ui reply form">
+									<form class="ui reply form" method="post"
+										action="AddReviewServlet">
+										<input type="text" name="materialID"
+											value="${material.materialID}" />
 										<div class="field">
-											<textarea></textarea>
+											<textarea name = "comment"></textarea>
 										</div>
-										<div class="ui blue labeled submit icon button">
-											<i class="icon edit"></i> Add Reply
+										<div class="field">
+											<label>Rating</label> <select
+												class="ui search dropdown fluid" name="rating">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+
+											</select>
 										</div>
+
+										<button class="ui button green fluid" type="submit">
+											<i class="book icon"></i> Comment
+										</button>
 									</form>
 								</c:if>
 							</div>

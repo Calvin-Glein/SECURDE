@@ -56,5 +56,12 @@
 				<div class="description">Manage Material in the library</div>
 			</div>
 		</div>
+		<div class="step" onclick="location.href = 'ViewAllRoomsServlet'">
+			<i class="user icon"></i>
+			<div class="content">
+				<div class="title">Room Availability</div>
+				<div class="description">Manage Room Availability in the library</div>
+			</div>
+		</div>
 	</div>
 </c:if>

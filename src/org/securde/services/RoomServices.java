@@ -15,6 +15,7 @@ import org.securde.beans.Account;
 import org.securde.beans.Material;
 import org.securde.beans.Room;
 import org.securde.db.DBPool;
+import org.securde.beans.Reservation;
 
 public class RoomServices {
 
@@ -371,6 +372,86 @@ public class RoomServices {
 		return timeArray;
 	}
 	
+	public static ArrayList<Reservation> getReservationList(int roomID){
+		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+		Reservation res = new Reservation();
+		
+		String sql = "Select * from reserve where status = ? and roomID = ?;";
+		
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 0);
+			pstmt.setInt(2, roomID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				res = new Reservation();
+				
+				res.setReserveId(rs.getInt(Reservation.RESERVE_ID));
+				res.setAccountID(rs.getInt(Reservation.RESERVE_ACCOUNT_ID));
+				res.setRoomID(rs.getInt(Reservation.RESERVE_ROOM_ID));
+				res.setFromTime(rs.getTimestamp(Reservation.RESERVE_START_TIME));
+				res.setToTime(rs.getTimestamp(Reservation.RESERVE_END_TIME));
+				res.setStatus(rs.getInt(Reservation.RESERVE_STATUS));
+				
+				reservations.add(res);
+			}
+
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		return reservations;
+	}
+	
+	public static void freeTimeSlot(int reservationID) {
+		String sql = "Update reserve SET status = ? WHERE reserveId = ?;";
+
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, reservationID);
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+	}
 	public static Timestamp dateToSQLDate(String date) {
 		java.sql.Timestamp sqlTimeStamp = null;
 		try {

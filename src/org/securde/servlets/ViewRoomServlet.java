@@ -40,7 +40,7 @@ public class ViewRoomServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		// a
 		int roomID = Integer.parseInt(request.getParameter("room_id"));
 
 		Room r = RoomServices.getRoomData(roomID);

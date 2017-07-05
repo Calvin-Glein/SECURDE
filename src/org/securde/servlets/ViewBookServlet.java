@@ -51,10 +51,16 @@ public class ViewBookServlet extends HttpServlet {
 
 		System.out.println("Mateerialzadsdaaad: " + materialID);
 		Material m = MaterialServices.getMaterialData(materialID);
+		int canComment = 0;
 
-		int canComment = MaterialServices.canComment(
-				Integer.parseInt(request.getSession(false).getAttribute("accountID").toString()), materialID);
+		try {
+			canComment = MaterialServices.canComment(
+					Integer.parseInt(request.getSession(false).getAttribute("accountID").toString()), materialID);
 
+		} catch (Exception e) {
+			// TODO: handle exception
+			canComment = 0;
+		}
 		ArrayList<Review> reviews = ReviewServices.getReviews(materialID);
 
 		request.setAttribute("commentable", canComment);

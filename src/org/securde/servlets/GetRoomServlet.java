@@ -33,7 +33,7 @@ public class GetRoomServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ArrayList<Room> Rooms = RoomServices.getRooms();
-	
+		
 		request.setAttribute("Rooms", Rooms);
 		request.getRequestDispatcher("browseRoom.jsp").forward(request, response);
 		}

@@ -135,7 +135,7 @@ public class RoomServices {
 		boolean pass = true;
 		
 		ArrayList<Long> compareLong = new ArrayList<Long>();
-		compareLong = getReservationLong();
+		compareLong = getReservationLong(roomID);
 		int i = 1;
 		while(i < compareLong.size()){
 			System.out.println("Loop Number" + i);
@@ -245,11 +245,11 @@ public class RoomServices {
 		}
 	}
 	
-	public static ArrayList<Long> getReservationLong(){
+	public static ArrayList<Long> getReservationLong(int roomID){
 		ArrayList<Long> timeArray = new ArrayList<Long>();
 		int index = 0;
 		timeArray.add(-1L);
-		String sql = "Select fromTime, toTime, status from reserve;";
+		String sql = "Select fromTime, toTime, status from reserve where roomID = ?;";
 
 		Connection conn = DBPool.getInstance().getConnection();
 
@@ -257,7 +257,7 @@ public class RoomServices {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-
+			pstmt.setInt(1,  roomID);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

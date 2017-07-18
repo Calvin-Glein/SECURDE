@@ -155,17 +155,17 @@
 						</div>
 						<div class="ui twelve wide column">
 							<div class="ui segment">
-								<h3 class="ui header left aligned">
+								<h2 class="ui header left aligned">
 									<div class="content">
 										Room Name
 										<div class="sub header">
 											<c:out value="${room.roomName}" />
 										</div>
 									</div>
-								</h3>
+								</h2>
 							</div>
 							<div class="ui segment">
-								<h3 class="ui header left aligned">
+								<h2 class="ui header left aligned">
 									<div class="content">
 										Reserved Time Slots
 										<div class="sub header">
@@ -177,7 +177,7 @@
 											</c:forEach>
 										</div>
 									</div>
-								</h3>
+								</h2>
 							</div>
 							<br>
 

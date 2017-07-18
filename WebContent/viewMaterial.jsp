@@ -79,11 +79,33 @@
 													<div id="borrow" class="ui green right button">Set</div>
 												</div>
 												<script type="text/javascript">
-													$(function() {
-														$(
-																'input[name="daterange"]')
-																.daterangepicker();
-													});
+													var accountType = '${sessionScope.accountType}';
+
+													if (accountType == 1) {
+														$(function() {
+															$(
+																	'#dateRangePicker')
+																	.daterangepicker(
+																			{
+																				"dateLimit" : {
+																					"days" : 7
+																				}
+																			});
+														})
+													}
+
+													if (accountType != 1) {
+														$(function() {
+															$(
+																	'#dateRangePicker')
+																	.daterangepicker(
+																			{
+																				"dateLimit" : {
+																					"days" : 30
+																				}
+																			});
+														})
+													}
 												</script>
 												<br> <br>
 												<h3 class="ui header">Verify Details</h3>

@@ -99,6 +99,48 @@ public class AccountServices {
 		return b;
 	}
 
+	public static int IsPasswordWeakPasswords(String password){
+
+		String sql = "Select passwordId from weakpasswords" + " where weakPassword = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int weakpasswordId = -1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, password);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				weakpasswordId = rs.getInt("passwordId");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+		
+		if(weakpasswordId == -1){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
+	
 	public static void CreateAccount(Account a) {
 		String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
 				+ Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " + Account.USER_FIRSTNAME + ", "

@@ -77,19 +77,27 @@ public class CreateAccountServlet extends HttpServlet {
 
 		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber, birthdate,
 				sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
-		AccountServices.CreateAccount(a);
-		request.setAttribute("account", a);
+		
+		if(AccountServices.IsPasswordWeakPasswords(password)==0)
+		{
+			AccountServices.CreateAccount(a);
+			request.setAttribute("account", a);
 
-		HttpSession session = request.getSession(true);
+			HttpSession session = request.getSession(true);
 
-		session.setAttribute("Username", a.getUsername());
-		session.setAttribute("accountID", a.getAccountid());
-		session.setAttribute("accountType", a.getAccountType());
+			session.setAttribute("Username", a.getUsername());
+			session.setAttribute("accountID", a.getAccountid());
+			session.setAttribute("accountType", a.getAccountType());
 
-		session.setAttribute("loggedIn", 1);
+			session.setAttribute("loggedIn", 1);
 
-		request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+			request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+			System.out.println("weak: " +  AccountServices.IsPasswordWeakPasswords(password));
+		}
+		else{
 
+		}
+		
 	}
 
 }

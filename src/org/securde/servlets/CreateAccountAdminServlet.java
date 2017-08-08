@@ -95,8 +95,14 @@ public class CreateAccountAdminServlet extends HttpServlet {
 
 		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber, birthdate,
 				sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
-		AccountServices.CreateAccount(a);
-		response.sendRedirect("administratorCreateAccount.jsp");
+		if (AccountServices.IsPasswordWeakPasswords(password) == 0) {
+
+			AccountServices.CreateAccount(a);
+			response.sendRedirect("administratorCreateAccount.jsp");
+		} else {
+
+		}
+
 	}
 
 }

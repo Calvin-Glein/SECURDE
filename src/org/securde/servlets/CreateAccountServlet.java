@@ -95,6 +95,7 @@ public class CreateAccountServlet extends HttpServlet {
 			System.out.println("weak: " +  AccountServices.IsPasswordWeakPasswords(password));
 		}
 		else{
+			request.getRequestDispatcher("signupError.jsp").forward(request, response);
 
 		}
 		

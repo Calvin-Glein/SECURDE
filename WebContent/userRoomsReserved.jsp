@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -16,6 +19,12 @@
 </style>
 </head>
 <body>
+	<!-- for checking user rights -->
+	<c:if test="${sessionScope.Username == null}">
+		<c:redirect url="noPrivilege.jsp" />
+	</c:if>
+
+
 	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>

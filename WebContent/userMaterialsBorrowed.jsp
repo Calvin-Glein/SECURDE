@@ -33,6 +33,13 @@
 </script>
 </head>
 <body>
+
+	<!-- for checking user rights -->
+	<c:if test="${sessionScope.Username == null}">
+		<c:redirect url="noPrivilege.jsp" />
+	</c:if>
+
+
 	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>

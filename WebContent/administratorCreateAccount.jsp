@@ -19,6 +19,12 @@
 </style>
 </head>
 <body>
+
+	<c:if test="${sessionScope.accountType != 4}">
+		<c:redirect url="noPrivilege.jsp" />
+	</c:if>
+
+
 	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>
@@ -33,7 +39,8 @@
 			</div>
 
 			<div class="thirteen wide column">
-				<form class="ui form" method="post" action="CreateAccountAdminServlet">
+				<form class="ui form" method="post"
+					action="CreateAccountAdminServlet">
 					<div class="field">
 						<label>Username</label> <input type="text" id="username"
 							name="username" placeholder="Your nickname in this website">

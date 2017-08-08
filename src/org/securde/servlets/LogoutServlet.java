@@ -40,6 +40,8 @@ public class LogoutServlet extends HttpServlet {
 
 		session.setAttribute("Username", null);
 		session.setAttribute("accountID", null);
+		session.setAttribute("accountType", null);
+
 		request.getRequestDispatcher("home.jsp").forward(request, response);
 
 	}

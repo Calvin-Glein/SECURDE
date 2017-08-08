@@ -35,6 +35,22 @@
 
 </head>
 <body>
+
+
+	<!-- for checking user rights -->
+	<c:if test="${sessionScope.accountType != 3}">
+		<c:if test="${sessionScope.accountType != 2}">
+			<c:redirect url="noPrivilege.jsp" />
+		</c:if>
+	</c:if>
+
+	<c:if test="${sessionScope.accountType != 2}">
+		<c:if test="${sessionScope.accountType != 3}">
+			<c:redirect url="noPrivilege.jsp" />
+		</c:if>
+	</c:if>
+
+
 	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>
@@ -66,7 +82,7 @@
 									<td>${a.fromTime}</td>
 									<td>${a.toTime}</td>
 									<td><button class="ui button basic green"
-											id="${a.reserveId}" type = "submit">FREE</button></td>
+											id="${a.reserveId}" type="submit">FREE</button></td>
 
 								</tr>
 							</c:forEach>

@@ -19,6 +19,21 @@
 </style>
 </head>
 <body>
+
+	<!-- for checking user rights -->
+	<c:if test="${sessionScope.accountType != 3}">
+		<c:if test="${sessionScope.accountType != 2}">
+			<c:redirect url="noPrivilege.jsp" />
+		</c:if>
+	</c:if>
+
+	<c:if test="${sessionScope.accountType != 2}">
+		<c:if test="${sessionScope.accountType != 3}">
+			<c:redirect url="noPrivilege.jsp" />
+		</c:if>
+	</c:if>
+
+
 	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>
@@ -227,7 +242,7 @@
 											Publisher
 											<div class="ui action input fluid">
 												<div class="ui labeled input">
-												<div class="ui label">
+													<div class="ui label">
 														<i class="book icon"></i>
 													</div>
 													<input type="text" id="publisher" name="publisher"

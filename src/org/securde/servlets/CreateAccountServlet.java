@@ -75,11 +75,24 @@ public class CreateAccountServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber, birthdate,
-				sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
-		
-		if(AccountServices.IsPasswordWeakPasswords(password)==0)
-		{
+		if (AccountServices.IsPasswordWeakPasswords(password) == 0) {
+
+
+			TripleDES td;
+			String encryptedPassword = null;
+			
+			try {
+				td = new TripleDES();
+				encryptedPassword = td.encrypt(password);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Account a = new Account(username, encryptedPassword, email, firstname, middlename, lastname, idNumber,
+					birthdate, sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
+
 			AccountServices.CreateAccount(a);
 			request.setAttribute("account", a);
 
@@ -92,13 +105,12 @@ public class CreateAccountServlet extends HttpServlet {
 			session.setAttribute("loggedIn", 1);
 
 			request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
-			System.out.println("weak: " +  AccountServices.IsPasswordWeakPasswords(password));
-		}
-		else{
+			System.out.println("weak: " + AccountServices.IsPasswordWeakPasswords(password));
+		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/signupError.jsp").forward(request, response);
 
 		}
-		
+
 	}
 
 }

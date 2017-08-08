@@ -93,7 +93,6 @@
 				<div class="field">
 					<label>Type</label> <select class="ui search dropdown fluid"
 						name="accountType">
-						<option value="">You are a</option>
 						<option value="1">Student</option>
 						<option value="2">Library Staff</option>
 						<option value="3">Library Manager</option>

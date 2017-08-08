@@ -49,7 +49,7 @@ public class ViewBorrowedServlet extends HttpServlet {
 		ArrayList<Material> borrows = MaterialServices
 				.BorrowedByAccount(Integer.parseInt((request.getSession(false).getAttribute("accountID").toString())));
 		request.setAttribute("materials", borrows);
-		request.getRequestDispatcher("userMaterialsBorrowed.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/userMaterialsBorrowed.jsp").forward(request, response);
 	}
 
 }

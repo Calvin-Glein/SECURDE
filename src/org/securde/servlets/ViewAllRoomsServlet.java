@@ -48,7 +48,7 @@ public class ViewAllRoomsServlet extends HttpServlet {
 		ArrayList<Room> rooms = RoomServices.getRooms();
 		// give clothes.jso the date to display
 		request.setAttribute("rooms", rooms);
-		request.getRequestDispatcher("staffManageRoom.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/staffManageRoom.jsp").forward(request, response);
 
 	}
 

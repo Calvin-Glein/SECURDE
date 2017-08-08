@@ -98,7 +98,7 @@ public class CreateAccountAdminServlet extends HttpServlet {
 		if (AccountServices.IsPasswordWeakPasswords(password) == 0) {
 
 			AccountServices.CreateAccount(a);
-			response.sendRedirect("administratorCreateAccount.jsp");
+			response.sendRedirect("/WEB-INF/jsp/administratorCreateAccount.jsp");
 		} else {
 
 		}

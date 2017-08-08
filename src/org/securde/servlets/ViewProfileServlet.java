@@ -46,7 +46,7 @@ public class ViewProfileServlet extends HttpServlet {
 		request.setAttribute("account", AccountServices
 				.getAccountData(Integer.parseInt((request.getSession(false).getAttribute("accountID").toString()))));
 
-		request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
 	}
 
 }

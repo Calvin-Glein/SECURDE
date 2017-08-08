@@ -16,6 +16,7 @@
 			<div class="description">View your borrowed materials</div>
 		</div>
 	</div>
+	<!-- here han -->
 	<div class="step" onclick="location.href = 'userAccountDetails.jsp'">
 		<i class="university icon"></i>
 		<div class="content">

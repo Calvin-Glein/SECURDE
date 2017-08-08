@@ -52,7 +52,7 @@ public class ViewAccountServlet extends HttpServlet {
 		request.setAttribute("account", a);
 		request.setAttribute("loggedIn", 1);
 		
-		request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
 	}
 
 }

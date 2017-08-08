@@ -50,6 +50,6 @@ public class GetBooksServlet extends HttpServlet {
 		ArrayList<Material> books = MaterialServices.getBooks();
 		// give clothes.jso the date to display
 		request.setAttribute("books", books);
-		request.getRequestDispatcher("browseBook.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/browseBook.jsp").forward(request, response);
 	}
 }

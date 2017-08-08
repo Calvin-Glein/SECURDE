@@ -64,7 +64,7 @@ public class AddMaterialServlet extends HttpServlet {
 		
 		MaterialServices.addMaterial(m);
 		
-		response.sendRedirect("staffAddMaterial.jsp");
+		response.sendRedirect("/WEB-INF/jsp/staffAddMaterial.jsp");
 		
 		
 	}

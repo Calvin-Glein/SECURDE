@@ -55,7 +55,7 @@ public class ViewRoomServlet extends HttpServlet {
 
 		request.setAttribute("room", r);
 		request.setAttribute("time", fin);
-		request.getRequestDispatcher("viewRoom.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/viewRoom.jsp").forward(request, response);
 	}
 
 }

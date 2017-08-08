@@ -68,10 +68,10 @@ public class LoginServlet extends HttpServlet {
 
 			
 			request.setAttribute("account", AccountServices.getAccountData(b.getAccountid()));
-			request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
 		}
 		else{
-			request.getRequestDispatcher("loginRetry.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/loginRetry.jsp").forward(request, response);
 
 		}
 

@@ -91,11 +91,11 @@ public class CreateAccountServlet extends HttpServlet {
 
 			session.setAttribute("loggedIn", 1);
 
-			request.getRequestDispatcher("userAccountDetails.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
 			System.out.println("weak: " +  AccountServices.IsPasswordWeakPasswords(password));
 		}
 		else{
-			request.getRequestDispatcher("signupError.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/signupError.jsp").forward(request, response);
 
 		}
 		

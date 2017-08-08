@@ -53,6 +53,6 @@ public class ManageRoomServlet extends HttpServlet {
 		request.setAttribute("room", r);
 		request.setAttribute("reservations", reservations); 
 		
-		request.getRequestDispatcher("staffViewManageRoom.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/staffViewManageRoom.jsp").forward(request, response);
 	}
 }

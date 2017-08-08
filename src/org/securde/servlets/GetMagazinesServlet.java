@@ -34,11 +34,9 @@ public class GetMagazinesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<Material> magazines = MaterialServices.getMagazines();
-		// give clothes.jso the date to display
-		request.setAttribute("magazines", magazines);
-		request.getRequestDispatcher("browseMagazine.jsp").forward(request, response);
-	}
+		doPost(request, response);
+
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -47,6 +45,10 @@ public class GetMagazinesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ArrayList<Material> magazines = MaterialServices.getMagazines();
+		// give clothes.jso the date to display
+		request.setAttribute("magazines", magazines);
+		request.getRequestDispatcher("/WEB-INF/jsp/browseMagazine.jsp").forward(request, response);
 
 	}
 

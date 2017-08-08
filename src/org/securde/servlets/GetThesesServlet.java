@@ -33,11 +33,8 @@ public class GetThesesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ArrayList<Material> theses = MaterialServices.getTheses();
-		// give clothes.jso the date to display
-		request.setAttribute("theses", theses);
-		request.getRequestDispatcher("browseThesis.jsp").forward(request, response);
+		doPost(request, response);
+
 	}
 
 	/**
@@ -46,7 +43,11 @@ public class GetThesesServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub // TODO Auto-generated method stub
+		ArrayList<Material> theses = MaterialServices.getTheses();
+		// give clothes.jso the date to display
+		request.setAttribute("theses", theses);
+		request.getRequestDispatcher("/WEB-INF/jsp/browseThesis.jsp").forward(request, response);
 
 	}
 

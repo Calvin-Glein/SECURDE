@@ -47,7 +47,7 @@ public class ManageBookServlet extends HttpServlet {
 		Material m = MaterialServices.getMaterialData(materialID);
 
 		request.setAttribute("material", m);
-		request.getRequestDispatcher("staffViewManageMaterial.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/staffViewManageMaterial.jsp").forward(request, response);
 	}
 
 }

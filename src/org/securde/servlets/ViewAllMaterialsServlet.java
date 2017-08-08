@@ -47,7 +47,7 @@ public class ViewAllMaterialsServlet extends HttpServlet {
 		ArrayList<Material> materials = MaterialServices.getAllMaterials();
 		// give clothes.jso the date to display
 		request.setAttribute("materials", materials);
-		request.getRequestDispatcher("staffManageMaterial.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/staffManageMaterial.jsp").forward(request, response);
 
 	}
 

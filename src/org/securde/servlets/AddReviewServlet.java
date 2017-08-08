@@ -66,7 +66,7 @@ public class AddReviewServlet extends HttpServlet {
 		request.setAttribute("commentable", canComment);
 		request.setAttribute("reviews", reviews);
 		request.setAttribute("material", m);
-		request.getRequestDispatcher("viewMaterial.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/viewMaterial.jsp").forward(request, response);
 
 	}
 

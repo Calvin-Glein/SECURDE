@@ -164,10 +164,12 @@
 								<h3 class="ui header left aligned">
 									<div class="content">
 										Password
-										<div class="sub header">
+										<%-- <div class="sub header">
 											<c:out value="${account.password}" />
-										</div>
-										<div class="sub header">change</div>
+										</div> --%>
+										<div class="sub header" onclick="changePasswordModal();">change</div>
+
+
 									</div>
 								</h3>
 							</div>
@@ -177,6 +179,62 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="ui modal">
+		<i class="close icon"></i>
+		<div class="header">Change Password</div>
+		<form class="ui large form" method="post"
+			action="ChangePasswordServlet">
+			<div class="ui stacked segment">
+				<div class="field">
+					<div class="ui left icon input">
+						<i class="lock icon"></i> <input type="password" name="password"
+							placeholder="Old Password">
+					</div>
+				</div>
+				<div class="field">
+					<div class="ui left icon input">
+						<i class="lock icon"></i> <input type="password"
+							id ="newPassword" name="newpassword" placeholder="New Password">
+					</div>
+				</div>
+				<script>
+					$('#newPassword').keyup(
+							function() {
+								var min = 8;
+								var len = $(this).val().length;
+								var upperCase = new RegExp('[A-Z]');
+								var lowerCase = new RegExp('[a-z]');
+								var numbers = new RegExp('[0-9]');
+
+								if (len < min) {
+									$("#ChangeButton").prop("disabled", true);
+								} else {
+									if ($(this).val().match(upperCase)
+											&& $(this).val().match(lowerCase)
+											&& $(this).val().match(numbers)) {
+										$("#ChangeButton").prop("disabled",
+												false);
+
+									}
+
+								}
+
+							});
+				</script>
+				<button id = "ChangeButton" disabled class="ui fluid large basic submit button green"
+					type="submit">Change</button>
+			</div>
+
+			<div class="ui error message"></div>
+
+		</form>
+	</div>
+	<script>
+		function changePasswordModal() {
+			$('.ui.modal').modal('show');
+		}
+	</script>
 
 	<br>
 	<br>

@@ -51,7 +51,6 @@ public class ViewBookServlet extends HttpServlet {
 
 		int materialID = Integer.parseInt(request.getParameter("material_id"));
 
-		System.out.println("Mateerialzadsdaaad: " + materialID);
 		Material m = MaterialServices.getMaterialData(materialID);
 		int canComment = 0;
 

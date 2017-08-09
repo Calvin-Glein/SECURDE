@@ -1,10 +1,12 @@
 package org.securde.services;
 
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.securde.beans.Account;
 import org.securde.beans.Material;
@@ -99,7 +101,7 @@ public class AccountServices {
 		return b;
 	}
 
-	public static int IsPasswordWeakPasswords(String password){
+	public static int IsPasswordWeakPasswords(String password) {
 
 		String sql = "Select passwordId from weakpasswords" + " where weakPassword = ?;";
 
@@ -132,15 +134,14 @@ public class AccountServices {
 			}
 
 		}
-		
-		if(weakpasswordId == -1){
+
+		if (weakpasswordId == -1) {
 			return 0;
-		}
-		else{
+		} else {
 			return 1;
 		}
 	}
-	
+
 	public static void CreateAccount(Account a) {
 		String sql = "INSERT INTO " + Account.USER_TABLE_NAME + " (" + Account.USER_USERNAME + ", "
 				+ Account.USER_PASSWORD + ", " + Account.USER_EMAIL + ", " + Account.USER_FIRSTNAME + ", "
@@ -180,7 +181,6 @@ public class AccountServices {
 
 			pstmt.executeUpdate();
 
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -197,6 +197,48 @@ public class AccountServices {
 
 		}
 		System.out.println("done");
+
+	}
+
+	public static void ChangePassword(int accountID, String password) {
+		String sql = "UPDATE account SET " + Account.USER_PASSWORD + " = ? WHERE " + Account.USER_USER_ID+"=?";
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		/*
+		 * Data d; String dateString = "30/1/2000"; //terminal Date date1 =
+		 * null; try { date1 = (Date) new
+		 * SimpleDateFormat("dd/MM/yyyy").parse(dateString); } catch
+		 * (ParseException e1) { // TODO Auto-generated catch block
+		 * e1.printStackTrace(); }
+		 */
+	
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, password);
+
+			pstmt.setInt(2, accountID);
+	
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
 
 	}
 

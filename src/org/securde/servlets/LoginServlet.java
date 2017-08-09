@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.securde.beans.Account;
 import org.securde.services.AccountServices;
 
@@ -43,40 +44,46 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String username = StringEscapeUtils.escapeHtml4(request.getParameter("username"));
+		System.out.print(username);
+		String password = StringEscapeUtils.escapeHtml4(request.getParameter("password"));
 
-		Account a = new Account(username, password);
-		
+		TripleDES td;
+		String encryptedPassword = null;
+
+		try {
+			td = new TripleDES();
+			encryptedPassword = td.encrypt(password);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Account a = new Account(username, encryptedPassword);
+
 		Account b = AccountServices.Login(a);
-		
-		if(b.getAccountid()!=-1){
+
+		if (b.getAccountid() != -1) {
 			HttpSession session = request.getSession(true);
 
-//			// Get session creation time.
-//			Date createTime = new Date(session.getCreationTime());
-	//
-//			// Get last access time of this web page.
-//			Date lastAccessTime = new Date(session.getLastAccessedTime());
+			// // Get session creation time.
+			// Date createTime = new Date(session.getCreationTime());
+			//
+			// // Get last access time of this web page.
+			// Date lastAccessTime = new Date(session.getLastAccessedTime());
 
-			
 			session.setAttribute("Username", b.getUsername());
 			session.setAttribute("accountID", b.getAccountid());
 			session.setAttribute("accountType", b.getAccountType());
 
 			session.setAttribute("loggedIn", 1);
 
-			
 			request.setAttribute("account", AccountServices.getAccountData(b.getAccountid()));
 			request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
-		}
-		else{
+		} else {
 			request.getRequestDispatcher("/WEB-INF/jsp/loginRetry.jsp").forward(request, response);
 
 		}
-
-		
-
 
 	}
 

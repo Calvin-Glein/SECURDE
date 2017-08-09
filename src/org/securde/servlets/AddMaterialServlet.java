@@ -1,12 +1,14 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.securde.beans.Material;
 import org.securde.services.MaterialServices;
 
@@ -43,13 +45,13 @@ public class AddMaterialServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String title = request.getParameter("title");
-		String materialType = request.getParameter("materialType");
-		String location = request.getParameter("location");
-		String author = request.getParameter("author");
-		String publisher = request.getParameter("publisher");
-		String year = request.getParameter("year");
-		String tags = request.getParameter("tags");
+		String title = StringEscapeUtils.escapeHtml4(request.getParameter("title"));
+		String materialType = StringEscapeUtils.escapeHtml4(request.getParameter("materialType"));
+		String location = StringEscapeUtils.escapeHtml4(request.getParameter("location"));
+		String author = StringEscapeUtils.escapeHtml4(request.getParameter("author"));
+		String publisher = StringEscapeUtils.escapeHtml4(request.getParameter("publisher"));
+		String year = StringEscapeUtils.escapeHtml4(request.getParameter("year"));
+		String tags = StringEscapeUtils.escapeHtml4(request.getParameter("tags"));
 
 		Material m = new Material();
 		

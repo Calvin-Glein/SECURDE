@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.securde.beans.Account;
 import org.securde.beans.Material;
 import org.securde.services.MaterialServices;
@@ -45,20 +46,19 @@ public class EditMaterialServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String title = request.getParameter("title");
-		String materialType = request.getParameter("materialType");
-		String deweyLocation = request.getParameter("location");
-		String author = request.getParameter("author");
-		String publisher = request.getParameter("publisher");
-		String year = request.getParameter("year");
-		String tags = request.getParameter("tags");
+		String title = StringEscapeUtils.escapeHtml4(request.getParameter("title"));
+		String materialType = StringEscapeUtils.escapeHtml4(request.getParameter("materialType"));
+		String deweyLocation = StringEscapeUtils.escapeHtml4(request.getParameter("location"));
+		String author = StringEscapeUtils.escapeHtml4(request.getParameter("author"));
+		String publisher = StringEscapeUtils.escapeHtml4(request.getParameter("publisher"));
+		String year = StringEscapeUtils.escapeHtml4(request.getParameter("year"));
+		String tags = StringEscapeUtils.escapeHtml4(request.getParameter("tags"));
 		int status = Integer.parseInt(request.getParameter("status"));
 		int materialID = Integer.parseInt(request.getParameter("materialID"));
 		
 		Material m = new Material(materialID, title, materialType, deweyLocation, author, publisher, year, tags, status, null, null);
 	
 		
-		System.out.println("Type of material: "  + materialType);
 		MaterialServices.editMaterial(m);
 		
 		Material m1 = MaterialServices.getMaterialData(materialID);

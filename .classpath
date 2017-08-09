@@ -16,6 +16,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/School/Eclipse EE/SECURDE/Required Libraries/tomcat-dbcp-9.0.0.M25.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/School/Eclipse EE/SECURDE/Required Libraries/tomcat-dbcp-9.0.0.M25.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Glenn/Downloads/common-lang3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

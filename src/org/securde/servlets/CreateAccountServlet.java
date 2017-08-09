@@ -1,6 +1,8 @@
 package org.securde.servlets;
 
 import java.io.IOException;
+
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.securde.beans.Account;
 import org.securde.services.AccountServices;
 
@@ -49,16 +52,18 @@ public class CreateAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String firstname = request.getParameter("firstname");
-		String middlename = request.getParameter("middlename");
-		String lastname = request.getParameter("lastname");
-		String idNumber = request.getParameter("numberID");
-		String birthdate = request.getParameter("birthdate");
-		String sQuestion = request.getParameter("sQuestion");
-		String sAnswer = request.getParameter("sAnswer");
+		String email = StringEscapeUtils.escapeHtml4(request.getParameter("email"));
+		String username = StringEscapeUtils.escapeHtml4(request.getParameter("username"));
+		System.out.println(username);
+		String password = StringEscapeUtils.escapeHtml4(request.getParameter("password"));
+		String firstname = StringEscapeUtils.escapeHtml4(request.getParameter("firstname"));
+		String middlename = StringEscapeUtils.escapeHtml4(request.getParameter("middlename"));
+		String lastname = StringEscapeUtils.escapeHtml4(request.getParameter("lastname"));
+		String idNumber = StringEscapeUtils.escapeHtml4(request.getParameter("numberID"));
+		String birthdate = StringEscapeUtils.escapeHtml4(request.getParameter("birthdate"));
+		String sQuestion = StringEscapeUtils.escapeHtml4(request.getParameter("sQuestion"));
+		String sAnswer = StringEscapeUtils.escapeHtml4(request.getParameter("sAnswer"));
+		//add try catch
 		int accountType = Integer.parseInt(request.getParameter("accountType"));
 
 		int isActive = 1;

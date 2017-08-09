@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<!-- here han -->
-	<div class="step" onclick="location.href = 'userAccountDetails.jsp'">
+	<div class="step" onclick="location.href = 'ViewRoomsReserved'">
 		<i class="university icon"></i>
 		<div class="content">
 			<div class="title">Room Reservations</div>
@@ -30,7 +30,7 @@
 <c:if test="${sessionScope.accountType == 4}">
 	<div class="ui small vertical steps">
 		<div class="step"
-			onclick="location.href = 'administratorCreateAccount.jsp'">
+			onclick="location.href = '/WEB-INF/jsp/administratorCreateAccount.jsp'">
 			<i class="user icon"></i>
 			<div class="content">
 				<div class="title">Create Account</div>
@@ -43,7 +43,7 @@
 <c:if
 	test="${sessionScope.accountType == 2 || sessionScope.accountType == 3}">
 	<div class="ui small vertical steps">
-		<div class="step" onclick="location.href = 'staffAddMaterial.jsp'">
+		<div class="step" onclick="location.href = '/WEB-INF/jsp/staffAddMaterial.jsp'">
 			<i class="user icon"></i>
 			<div class="content">
 				<div class="title">Add Material</div>

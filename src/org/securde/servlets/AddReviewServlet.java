@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.securde.beans.Material;
 import org.securde.beans.Review;
 import org.securde.services.MaterialServices;
@@ -48,7 +49,7 @@ public class AddReviewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int accountID = Integer.parseInt(request.getSession(false).getAttribute("accountID").toString());
 		int materialID = Integer.parseInt(request.getParameter("materialID").toString());
-		String comment = request.getParameter("comment");
+		String comment = StringEscapeUtils.escapeHtml4(request.getParameter("comment"));
 		int rating = Integer.parseInt(request.getParameter("rating").toString());
 
 		Review r = new Review(accountID, materialID, comment, rating, null,

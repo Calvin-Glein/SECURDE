@@ -58,7 +58,7 @@
 				</div>
 
 				<div class="field">
-					<label>Password</label> <input required type="text" id="password"
+					<label>Password</label> <input required type="password" id="password"
 						name="password"
 						placeholder="Must be alphanumeric with at least one uppercase. Minimum length is 8 while maximum is 15."
 						maxlength="15">
@@ -144,11 +144,7 @@
 					Account</button>
 
 				<br>
-				<div class="item">
-					<a href="userAccountDetails.jsp" class="ui green button">[Debug]
-						Go to profile</a>
-				</div>
-
+				
 
 			</form>
 		</div>

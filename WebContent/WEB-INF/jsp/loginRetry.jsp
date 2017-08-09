@@ -58,7 +58,7 @@ body {
 					<div class="field">
 						<div class="ui left icon input">
 							<i class="lock icon"></i> <input type="password" name="password"
-								placeholder="Password">
+								placeholder="Password" >
 						</div>
 					</div>
 					<button class="ui fluid large basic submit button green"

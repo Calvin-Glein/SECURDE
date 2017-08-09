@@ -35,6 +35,8 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/jsp/prohibitedAccess.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -65,6 +67,9 @@ public class LoginServlet extends HttpServlet {
 
 		if (b.getAccountid() != -1) {
 			HttpSession session = request.getSession(true);
+			session.setAttribute("Username", null);
+			session.setAttribute("accountID",null);
+			session.setAttribute("accountType", null);
 
 			// // Get session creation time.
 			// Date createTime = new Date(session.getCreationTime());
@@ -81,6 +86,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("account", AccountServices.getAccountData(b.getAccountid()));
 			request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
 		} else {
+			
 			request.getRequestDispatcher("/WEB-INF/jsp/loginRetry.jsp").forward(request, response);
 
 		}

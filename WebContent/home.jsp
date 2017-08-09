@@ -99,7 +99,7 @@
 
 			<br> <br> <br>
 
-			<h1 class="ui horizontal divider header">Toss coin</h1>
+			<!-- <h1 class="ui horizontal divider header">Toss coin</h1>
 			<br>
 			<div class="ui grid">
 				<div class="ui eight wide column ">
@@ -120,7 +120,7 @@
 					<br> <br>
 					<button class="ui blue fluid button">Add Friend</button>
 				</div>
-			</div>
+			</div> -->
 
 
 		</div>

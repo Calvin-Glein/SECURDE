@@ -30,7 +30,7 @@
 		<div class="ui segment">
 			<div class="ui negative message">
 				<i class="close icon"></i>
-				<div class="header">Weak Password</div>
+				<div class="header">Weak Password or Password Requirements are not met</div>
 				<p>Please try again</p>
 			</div>
 			<form class="ui form" method="post" action="CreateAccountServlet">

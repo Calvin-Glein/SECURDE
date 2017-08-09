@@ -49,6 +49,28 @@ public class CreateAccountServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	private static boolean checkString(String str) {
+	    char ch;
+	    boolean capitalFlag = false;
+	    boolean lowerCaseFlag = false;
+	    boolean numberFlag = false;
+	    for(int i=0;i < str.length();i++) {
+	        ch = str.charAt(i);
+	        if( Character.isDigit(ch)) {
+	            numberFlag = true;
+	        }
+	        else if (Character.isUpperCase(ch)) {
+	            capitalFlag = true;
+	        } else if (Character.isLowerCase(ch)) {
+	            lowerCaseFlag = true;
+	        }
+	        if(numberFlag && capitalFlag && lowerCaseFlag)
+	            return true;
+	    }
+	    return false;
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -66,6 +88,12 @@ public class CreateAccountServlet extends HttpServlet {
 		//add try catch
 		int accountType = Integer.parseInt(request.getParameter("accountType"));
 
+		
+		//server side validation for password
+		if(password.length()<8 && !checkString(password)){
+			request.getRequestDispatcher("/WEB-INF/jsp/signupError.jsp").forward(request, response);
+		}
+		
 		int isActive = 1;
 		int isChanged = 1;
 		String passwordExpireString = "30/1/2000";

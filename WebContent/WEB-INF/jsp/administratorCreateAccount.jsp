@@ -43,56 +43,95 @@
 					action="CreateAccountAdminServlet">
 					<div class="field">
 						<label>Username</label> <input required type="text" id="username"
-							name="username" placeholder="Your nickname in this website">
+							name="username" placeholder="Your nickname in this website"
+							maxlength="10">
 					</div>
 					<div class="ui form">
 						<label>Name</label>
 						<div class="inline fields">
 							<div class="six wide field">
-								<input required type="text" placeholder="First Name" id="firstname"
-									name="firstname">
+								<input required type="text" placeholder="First Name"
+									id="firstname" name="firstname" maxlength="20">
 							</div>
 							<div class="five wide field">
-								<input required type="text" placeholder="Middle Name" id="middlename"
-									name="middlename">
+								<input required type="text" placeholder="Middle Name"
+									id="middlename" name="middlename" maxlength="20">
 							</div>
 							<div class="five wide field">
-								<input required type="text" placeholder="Last Name" id="lastname"
-									name="lastname">
+								<input required type="text" placeholder="Last Name"
+									id="lastname" name="lastname" maxlength="20">
 							</div>
 						</div>
 					</div>
 					<div class="field">
-						<label>Email</label> <input required type="text" id="email" name="email"
-							placeholder="username@domain.com">
+						<label>Email</label> <input required type="text" id="email"
+							name="email" placeholder="username@domain.com" maxlength="20">
 					</div>
 
 					<div class="field">
 						<label>Password</label> <input required type="text" id="password"
-							name="password" placeholder="Must be alphanumeric">
+							name="password"
+							placeholder="Must be alphanumeric with at least one uppercase. Minimum length is 8 while maximum is 15."
+							maxlength="15">
+					</div>
+
+					<script>
+					$('#password').keyup(
+							function() {
+								var min = 8;
+								var len = $(this).val().length;
+								var upperCase = new RegExp('[A-Z]');
+								var lowerCase = new RegExp('[a-z]');
+								var numbers = new RegExp('[0-9]');
+
+								if (len < min) {
+									$("#CreateButton").prop("disabled", true);
+								} else {
+									if ($(this).val().match(upperCase)
+											&& $(this).val().match(lowerCase)
+											&& $(this).val().match(numbers)) {
+										$("#CreateButton").prop("disabled",
+												false);
+
+									}
+
+								}
+
+							});
+				</script>
+					<div class="field">
+						<label>Re-type Password</label> <input required type="text"
+							name="retype" placeholder="Re-type password" maxlength="15">
 					</div>
 					<div class="field">
-						<label>Re-type Password</label> <input required type="text" name="retype"
-							placeholder="Re-type password">
+						<label>Student Number/Employee Number</label> <input required
+							type="text" id="numberID" name="numberID"
+							placeholder="Refer to your ID" maxlength="10"
+							onkeypress="return isNumberKey(event)">
+						<script>
+					function isNumberKey(evt){
+					    var charCode = (evt.which) ? evt.which : event.keyCode
+					    if (charCode > 31 && (charCode < 48 || charCode > 57))
+					        return false;
+					    return true;
+					}
+					</script>
 					</div>
 					<div class="field">
-						<label>Student Number/Employee Number</label> <input required type="text"
-							id="numberID" name="numberID" placeholder="Refer to your ID">
-					</div>
-					<div class="field">
-						<label>Birthday</label> <input type="text" required name="birthdate"
-							placeholder="Birth" id="birthdate">
+						<label>Birthday</label> <input required type="text"
+							name="birthdate" placeholder="Birth" id="birthdate"
+							maxlength="10">
 					</div>
 					<div class="ui form">
 						<label>Secret Question</label>
 						<div class="inline fields">
 							<div class="ten wide field">
-								<input required type="text" placeholder="Question" name="sQuestion"
-									id="sQuestion">
+								<input type="text" required placeholder="Question"
+									name="sQuestion" id="sQuestion" maxlength="20">
 							</div>
 							<div class="six wide field">
-								<input required type="text" placeholder="Answer" name="sAnswer"
-									id="sAnswer">
+								<input type="text" required placeholder="Answer" name="sAnswer"
+									id="sAnswer" maxlength="20">
 							</div>
 
 						</div>
@@ -113,7 +152,8 @@
 						</div>
 					</div>
 
-					<button class="ui button basic green fluid" type="submit">Register
+					<button disabled id="CreateButton"
+						class="ui button basic green fluid" type="submit">Register
 						Account</button>
 
 					<br>

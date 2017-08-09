@@ -38,12 +38,35 @@ public class CreateAccountAdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	private static boolean checkString(String str) {
+	    char ch;
+	    boolean capitalFlag = false;
+	    boolean lowerCaseFlag = false;
+	    boolean numberFlag = false;
+	    for(int i=0;i < str.length();i++) {
+	        ch = str.charAt(i);
+	        if( Character.isDigit(ch)) {
+	            numberFlag = true;
+	        }
+	        else if (Character.isUpperCase(ch)) {
+	            capitalFlag = true;
+	        } else if (Character.isLowerCase(ch)) {
+	            lowerCaseFlag = true;
+	        }
+	        if(numberFlag && capitalFlag && lowerCaseFlag)
+	            return true;
+	    }
+	    return false;
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -73,6 +96,13 @@ public class CreateAccountAdminServlet extends HttpServlet {
 		int isChanged = 1;
 		String passwordExpireString = "30/1/2000";
 
+		
+		//server side validation for password
+		if(password.length()<8 && !checkString(password)){
+			request.getRequestDispatcher("CreateAccountByAdministratorRedirectServlet").forward(request, response);
+		}
+		
+		
 		Date passwordExpire = null;
 		try {
 			java.sql.Timestamp sqlTimeStamp = new java.sql.Timestamp(
@@ -83,15 +113,31 @@ public class CreateAccountAdminServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		Account a = new Account(username, password, email, firstname, middlename, lastname, idNumber, birthdate,
-				sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
 		if (AccountServices.IsPasswordWeakPasswords(password) == 0) {
 
-			AccountServices.CreateAccount(a);
-			response.sendRedirect("/WEB-INF/jsp/administratorCreateAccount.jsp");
-		} else {
 
+			TripleDES td;
+			String encryptedPassword = null;
+			
+			try {
+				td = new TripleDES();
+				encryptedPassword = td.encrypt(password);
+
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Account a = new Account(username, encryptedPassword, email, firstname, middlename, lastname, idNumber,
+					birthdate, sQuestion, sAnswer, accountType, isChanged, passwordExpire, isActive);
+
+			AccountServices.CreateAccount(a);
+			request.getRequestDispatcher("/WEB-INF/jsp/administratorCreateAccount.jsp").forward(request, response);
+
+		} else {
+			//weak password
 		}
+		
 
 	}
 

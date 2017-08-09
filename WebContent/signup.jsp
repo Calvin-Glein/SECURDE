@@ -32,33 +32,36 @@
 			<form class="ui form" method="post" action="CreateAccountServlet">
 				<div class="field">
 					<label>Username</label> <input required type="text" id="username"
-						name="username" placeholder="Your nickname in this website">
+						name="username" placeholder="Your nickname in this website"
+						maxlength="10">
 				</div>
 				<div class="ui form">
 					<label>Name</label>
 					<div class="inline fields">
 						<div class="six wide field">
 							<input required type="text" placeholder="First Name"
-								id="firstname" name="firstname">
+								id="firstname" name="firstname" maxlength="20">
 						</div>
 						<div class="five wide field">
 							<input required type="text" placeholder="Middle Name"
-								id="middlename" name="middlename">
+								id="middlename" name="middlename" maxlength="20">
 						</div>
 						<div class="five wide field">
 							<input required type="text" placeholder="Last Name" id="lastname"
-								name="lastname">
+								name="lastname" maxlength="20">
 						</div>
 					</div>
 				</div>
 				<div class="field">
 					<label>Email</label> <input required type="text" id="email"
-						name="email" placeholder="username@domain.com">
+						name="email" placeholder="username@domain.com" maxlength="20">
 				</div>
 
 				<div class="field">
 					<label>Password</label> <input required type="text" id="password"
-						name="password" placeholder="Must be alphanumeric">
+						name="password"
+						placeholder="Must be alphanumeric with at least one uppercase. Minimum length is 8 while maximum is 15."
+						maxlength="15">
 				</div>
 
 				<script>
@@ -87,27 +90,35 @@
 				</script>
 				<div class="field">
 					<label>Re-type Password</label> <input required type="text"
-						name="retype" placeholder="Re-type password">
+						name="retype" placeholder="Re-type password" maxlength="15">
 				</div>
 				<div class="field">
 					<label>Student Number/Employee Number</label> <input required
 						type="text" id="numberID" name="numberID"
-						placeholder="Refer to your ID">
+						placeholder="Refer to your ID" maxlength="10" onkeypress="return isNumberKey(event)">
+					<script>
+					function isNumberKey(evt){
+					    var charCode = (evt.which) ? evt.which : event.keyCode
+					    if (charCode > 31 && (charCode < 48 || charCode > 57))
+					        return false;
+					    return true;
+					}
+					</script>
 				</div>
 				<div class="field">
 					<label>Birthday</label> <input required type="text"
-						name="birthdate" placeholder="Birth" id="birthdate">
+						name="birthdate" placeholder="Birth" id="birthdate" maxlength="10">
 				</div>
 				<div class="ui form">
 					<label>Secret Question</label>
 					<div class="inline fields">
 						<div class="ten wide field">
 							<input type="text" required placeholder="Question"
-								name="sQuestion" id="sQuestion">
+								name="sQuestion" id="sQuestion" maxlength="20">
 						</div>
 						<div class="six wide field">
 							<input type="text" required placeholder="Answer" name="sAnswer"
-								id="sAnswer">
+								id="sAnswer" maxlength="20">
 						</div>
 
 					</div>

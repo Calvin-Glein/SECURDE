@@ -30,7 +30,7 @@
 <c:if test="${sessionScope.accountType == 4}">
 	<div class="ui small vertical steps">
 		<div class="step"
-			onclick="location.href = '/WEB-INF/jsp/administratorCreateAccount.jsp'">
+			onclick="location.href = 'CreateAccountByAdministratorRedirectServlet'">
 			<i class="user icon"></i>
 			<div class="content">
 				<div class="title">Create Account</div>

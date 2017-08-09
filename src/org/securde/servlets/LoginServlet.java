@@ -64,8 +64,18 @@ public class LoginServlet extends HttpServlet {
 		Account a = new Account(username, encryptedPassword);
 
 		Account b = AccountServices.Login(a);
+		
+		HttpSession presession = request.getSession();
+		int trial;
+		if (presession.getAttribute("loginCount") == null){
+			presession.setAttribute("loginCount", 0);
+			trial = (Integer)presession.getAttribute("loginCount");
+		}
+		else{
+			trial = (Integer)presession.getAttribute("loginCount");
+		}
 
-		if (b.getAccountid() != -1) {
+		if (b.getAccountid() != -1 && trial < 3) {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("Username", null);
 			session.setAttribute("accountID",null);
@@ -85,10 +95,24 @@ public class LoginServlet extends HttpServlet {
 
 			request.setAttribute("account", AccountServices.getAccountData(b.getAccountid()));
 			request.getRequestDispatcher("/WEB-INF/jsp/userAccountDetails.jsp").forward(request, response);
-		} else {
-			
+		} 
+		else if (trial >= 3) {
+			long lastAccessedTime = presession.getLastAccessedTime();
+			long curTime = System.currentTimeMillis(); 
+			System.out.println(lastAccessedTime);
+			System.out.println(curTime);
+			if (curTime - lastAccessedTime > 180000){ // 3 mins
+				presession.invalidate();
+				System.out.println("Unlocked.");
+				trial = 0;
+			}
 			request.getRequestDispatcher("/WEB-INF/jsp/loginRetry.jsp").forward(request, response);
-
+		}
+		else {
+			request.getRequestDispatcher("/WEB-INF/jsp/loginRetry.jsp").forward(request, response);
+			System.out.println("Trial" + " " + trial);
+			trial++;
+			presession.setAttribute("loginCount", trial);
 		}
 
 	}

@@ -452,6 +452,87 @@ public class RoomServices {
 
 		}
 	}
+	
+	public static ArrayList<Room> BorrowedByAccount(int accountID) {
+		String sql = "Select * from meetingroom where roomId in (select roomID from reserve where accountID = ? && status = 0);";
+
+		ArrayList<Room> reserved = new ArrayList<Room>();
+		Room r = new Room();
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accountID);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				r = new Room();
+
+				r.setRoomId(rs.getInt(Room.ROOM_ID));
+				r.setRoomName(rs.getString(Room.ROOM_NAME));
+				r.setRoomLocation(rs.getString(Room.ROOM_LOCATION));
+				r.setRoomAvail(rs.getString(Room.ROOM_AVAILABLE));
+				r.setTimeOccupied(rs.getTimestamp(Room.ROOM_TIME_OCCUPIED));
+				r.setTimeOut(rs.getTimestamp(Room.ROOM_TIME_OUT));
+				
+				reserved.add(r);
+
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+
+		return reserved;
+	}
+	
+	public static void returnReservation(int roomID, int accountID) {
+		String sql = "Update reserve SET status = 1 WHERE accountID = ? and roomID = ? and status = 0;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accountID);
+			pstmt.setInt(2, roomID);
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+
+		}
+	}
+	
 	public static Timestamp dateToSQLDate(String date) {
 		java.sql.Timestamp sqlTimeStamp = null;
 		try {

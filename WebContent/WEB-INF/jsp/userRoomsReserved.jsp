@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
 	pageEncoding="US-ASCII"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><!DOCTYPE html>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,18 +16,27 @@
 
 <style>
 </style>
+
+<script>
+	$(document).ready(function() {
+		$("button").click(function() {
+			//get id of the clicked delete button
+			var room_id = $(this).attr("id");
+
+			//set value of hiddne inpiut to the id
+			$("#hiddeninput").val(room_id);
+
+			//submit form automatically
+			$("form").submit();
+		});
+	});
+</script>
 </head>
 <body>
-	<!-- for checking user rights -->
-	<c:if test="${sessionScope.Username == null}">
-		<c:redirect url="noPrivilege.jsp" />
-	</c:if>
-
-
 	<jsp:include page="header.jsp" />
 	<div class="ui container">
 		<br> <br> <br> <br>
-		<h1 class="ui header headerc">Profile</h1>
+		<h1 class="ui header headerc">Rooms</h1>
 		<div class="ui fitted divider"></div>
 
 		<br>
@@ -53,40 +61,20 @@
 					0" width="100%">
 							<thead>
 								<tr>
-									<th>Title</th>
-									<th>Location</th>
-									<th>Author</th>
-									<th>Publisher</th>
-									<th>Year</th>
-									<th>Tags</th>
-									<th>Status</th>
-									<th>Rating</th>
-									<th>Action</th>
+									<th>Room Name</th>
+									<th>Room Location</th>
+									<th>View</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td><button class="ui red button fluid">Red</button></td>
-								</tr>
-								<tr>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td>None</td>
-									<td><button class="ui red button fluid">Red</button></td>
-								</tr>
+								<c:forEach var="c" items="${rooms}">
+									<tr>
+										<td>${c.roomName}</td>
+										<td>${c.roomLocation}</td>
+										<td><button class="ui button basic green"
+												id="${c.roomId}">Return</button></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -101,6 +89,9 @@
 	<br>
 	<br>
 
+	<form action="ReturnRoomServlet" method="POST">
+		<input id="hiddeninput" name="room_id" type="hidden">
+	</form>
 
 
 </body>

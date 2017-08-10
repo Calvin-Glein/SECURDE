@@ -40,7 +40,8 @@ body {
 <body>
 	<jsp:include page="header.jsp" />
 
-	<div class="ui middle aligned center aligned grid" style = "padding-top:180px;">
+	<div class="ui middle aligned center aligned grid"
+		style="padding-top: 180px;">
 		<div class="column">
 			<div class="ui large image">
 				<img src="images/experience.png">
@@ -60,14 +61,18 @@ body {
 								placeholder="Password">
 						</div>
 					</div>
-					<button class="ui fluid large basic submit button green" type = "submit">Login</button>
+					<button class="ui fluid large basic submit button green"
+						type="submit">Login</button>
 				</div>
 
 				<div class="ui error message"></div>
 
 			</form>
+			<div class="ui green button fluid"
+				onclick="location.href = 'forgotPassword.jsp';">Forgot Password</div>
 			<h4 class="ui horizontal divider header">or</h4>
-			<div class="ui green button fluid" onclick="location.href = '\signup.jsp';">Create an Account</div>
+			<div class="ui green button fluid"
+				onclick="location.href = 'signup.jsp';">Create an Account</div>
 		</div>
 	</div>
 

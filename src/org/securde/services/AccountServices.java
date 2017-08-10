@@ -100,6 +100,53 @@ public class AccountServices {
 
 		return b;
 	}
+	
+	public static Account LoginQuestion(Account a) {
+
+		Account b = new Account();
+
+		b.setAccountid(-1);
+		String sql = "Select " + Account.USER_USER_ID + " , " + Account.USER_USERNAME + ", " + Account.USER_ACCOUNTTYPE
+				+ " from account where " + Account.USER_SECRETQUESTION + " = ? && " + Account.USER_SECRETANSWER + " = ?;";
+
+		Connection conn = DBPool.getInstance().getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a.getUsername());
+			pstmt.setString(2, a.getPassword());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				b.setAccountid(Integer.parseInt(rs.getString(Account.USER_USER_ID)));
+				b.setUsername(rs.getString(Account.USER_USERNAME));
+				b.setAccountType(rs.getInt(Account.USER_ACCOUNTTYPE));
+			}
+			System.out.println("done");
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+
+			}
+			System.out.println("done");
+
+		}
+		System.out.println("done");
+
+		return b;
+	}
 
 	public static int IsPasswordWeakPasswords(String password) {
 

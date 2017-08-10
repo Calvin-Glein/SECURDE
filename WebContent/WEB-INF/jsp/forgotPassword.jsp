@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+<title>Forgot Password</title>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -47,37 +47,37 @@ body {
 				<img src="images/experience.png">
 			</div>
 			<br> <br>
-			<form class="ui large form" method="post" action="LoginServlet">
+			<form class="ui large form" method="post"
+				action="ForgotPasswordServlet">
 				<div class="ui stacked segment">
 					<div class="field">
 						<div class="ui left icon input">
-							<i class="user icon"></i> <input type="text" name="username"
-								placeholder="Username">
+							<i class="user icon"></i> <input type="text"
+								name="secretquestion" placeholder="Secret Question">
 						</div>
 					</div>
 					<div class="field">
 						<div class="ui left icon input">
-							<i class="lock icon"></i> <input type="password" name="password"
-								placeholder="Password">
+							<i class="lock icon"></i> <input type="password"
+								name="secretanswer" placeholder="Answer">
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left icon input">
+							<i class="lock icon"></i> <input type="password"
+								name="newpassword" placeholder="New Password">
 						</div>
 					</div>
 					<button class="ui fluid large basic submit button green"
-						type="submit">Login</button>
+						type="submit">Enter</button>
 				</div>
 
-				<div class="ui negative message">
-					<i class="close icon"></i>
-					<div class="header">Username or password is incorrect</div>
-					<p>Please try again</p>
-				</div>
+				<div class="ui error message"></div>
 
 			</form>
-			<div class="ui green button fluid"
-				onclick="location.href = 'forgotPassword.jsp';">Forgot
-				Password</div>
 			<h4 class="ui horizontal divider header">or</h4>
 			<div class="ui green button fluid"
-				onclick="location.href = 'signup.jsp';">Create an Account</div>
+				onclick="location.href = '\signup.jsp';">Create an Account</div>
 		</div>
 	</div>
 
